@@ -46,6 +46,8 @@ char* date;
 // Replace with your network credentials
 const char* ssid = xxxxxxx";
 const char* password = "xxxxxxxxx";
+
+// Global variables
 byte etatDEL12 = 0;
 long dateCourante;
 long dateCourante2;
@@ -66,20 +68,18 @@ boolean s = true; // état de la sortie
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
-
+// Assignment of sensors
 #define DHTPIN1 0     // Interieur dht22 Digital pin connected to the DHT sensor
 #define DHTPIN2 4     // D2 et D1 SCL+SDA BME Digital pin connected to the DHT sensor
 #define DHTPIN3 14     // cave DHT 21 Digital pin connected to the DHT sensor
 
-// Uncomment the type of sensor in use:
 #define DHTTYPE1    DHT11     // DHT 11
 #define DHTTYPE2    DHT22     // DHT 22 (AM2302)
 #define DHTTYPE    DHT21     // DHT 21 (AM2301)
 
-DHT dht2(DHTPIN1, DHTTYPE1);  // interieur
-//DHT dht1(DHTPIN2, DHTTYPE);   // exterieur
+DHT dht2(DHTPIN1, DHTTYPE1);  // Interieur
 DHT dht3(DHTPIN3, DHTTYPE);  // Cave
-Adafruit_BME280 bme; //*Declare the bpm variable, an easy to remember reference for the device*
+Adafruit_BME280 bme; // Extérieur
 Adafruit_SHT31 sht31 = Adafruit_SHT31();
 
 unsigned long delayTime;
@@ -264,42 +264,7 @@ setInterval(function ( ) {
 
 </script>
 </html>)rawliteral";
-//-----------------------------------------------------------------------------------------
-// Replaces placeholder with DHT values
-String processor(const String& var) {
-  //Serial.println(var);
-  if (var == "TEMPERATURE INTERIEUR") {
-    return String(t1);
-    return String(t2);
-    return String(t3);
-  }
-  else if (var == "HUMIDITE INTERIEUR") {
-    return String(h1);
-    return String(h2);
-    return String(h3);
-  }
-  //  if (var == "TEMPERATURE INTERIEUR") {
-  //    return String(t1);
-  //    return String(t2);
-  //    return String(t3);
-  //  }
-  //  else if (var == "HUMIDITE INTERIEUR") {
-  //    return String(h1);
-  //    return String(h2);
-  //    return String(h3);
-  //  }
-  //  if (var == "TEMPERATURE INTERIEUR") {
-  //    return String(t1);
-  //    return String(t2);
-  //    return String(t3);
-  //  }
-  //  else if (var == "HUMIDITE INTERIEUR") {
-  //    return String(h1);
-  //    return String(h2);
-  //    return String(h3);
-  //  }
-  return String();
-}
+
 //----------------------------Web_SCAPPING_HPA----------------------------------------------
 void webScraping() {
   if (WiFi.status() == WL_CONNECTED) {
@@ -309,7 +274,7 @@ void webScraping() {
     client->setInsecure();
     HTTPClient https;
     Serial.print("[HTTPS] begin...\n");
-    if (https.begin(*client, "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=cc47c0be99a04dc341e0bf460802ecf0")) {  // HTTPS
+    if (https.begin(*client, "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=xxxxxxxxxxxx")) {  // HTTPS
       https.setAuthorization(meteomaticsLogin, meteomaticsPwd);
       Serial.print("[HTTPS] GET...\n");
       // start connection and send HTTP header
@@ -577,6 +542,8 @@ void loop() {
       Serial.println(p1);
     }
   }
+
+  //----------------------------------Partie en attente Ventilation controlé-------------------------------
   //  if (t1 < 17) {
   //    unsigned long temps = millis(); // lecture du temps système, utiliser une variable comme "temps" permet de l'utiliser pour d'autres action dans le programme
   //
@@ -634,10 +601,6 @@ void loop() {
   Serial.print("Year: ");
   Serial.println(currentYear);
 
-  //prepaSQL();
-
-  //webScraping()
-  
   emissionSiBesoin();
 
   delay(1000);
