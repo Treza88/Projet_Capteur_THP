@@ -2,7 +2,7 @@
 
    Programme en conception
   Hervé Thomesse
-  Complete project details at https://randomnerdtutorials.com/esp8266-dht11dht22-temperature-and-humidity-web-server-with-arduino-ide/
+  Complete project details at https://github.com/Treza88/Projet_Capteur_THP
 *********/
 
 // Import required libraries
@@ -27,25 +27,18 @@
 #include <WiFiUdp.h>
 #include <ArduinoJson.h>  //lirairie pour lire un JSON pour extraire HPA
 #include <ESP8266HTTPClient.h>
+#include <ConnexParams.h>
 
- #define SEALEVELPRESSURE_HPA (1013.25)
+#define SEALEVELPRESSURE_HPA (1013.25)
 
 
-// Parametre server MySQL
-IPAddress server_addr(1, 1, 1, 1); // IP of the MySQL *server* here
-char user[] = "xxxxxxxxxx";              // MySQL user login username
-char passw[] = "xxxxxxxx";        // MySQL user login password
-// Sample query
-//char INSERT_SQL[] = "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('BME280','Extériur',newT1,newH1)";
+
 WiFiClient client;                 // Use this for WiFi instead of EthernetClient
 MySQL_Connection conn(&client);
 MySQL_Cursor* cursor;
 
 char* date;
 
-// Replace with your network credentials
-const char* ssid = xxxxxxx";
-const char* password = "xxxxxxxxx";
 
 // Global variables
 byte etatDEL12 = 0;
@@ -57,6 +50,13 @@ unsigned long mtemps = 0; // mémorisation du temps + 500ms
 char insert_Sql_1[140];
 char insert_Sql_2[140];
 char insert_Sql_3[140];
+char insert_Sql_4[140];
+char insert_Sql_5[140];
+char insert_Sql_6[140];
+char insert_Sql_7[140];
+char insert_Sql_8[140];
+long monId = 0;
+
 //Week Days
 String weekDays[7] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 String months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -68,18 +68,20 @@ boolean s = true; // état de la sortie
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
-// Assignment of sensors
+
 #define DHTPIN1 0     // Interieur dht22 Digital pin connected to the DHT sensor
 #define DHTPIN2 4     // D2 et D1 SCL+SDA BME Digital pin connected to the DHT sensor
 #define DHTPIN3 14     // cave DHT 21 Digital pin connected to the DHT sensor
 
+// Uncomment the type of sensor in use:
 #define DHTTYPE1    DHT11     // DHT 11
 #define DHTTYPE2    DHT22     // DHT 22 (AM2302)
 #define DHTTYPE    DHT21     // DHT 21 (AM2301)
 
-DHT dht2(DHTPIN1, DHTTYPE1);  // Interieur
+DHT dht2(DHTPIN1, DHTTYPE1);  // interieur
+//DHT dht1(DHTPIN2, DHTTYPE);   // exterieur
 DHT dht3(DHTPIN3, DHTTYPE);  // Cave
-Adafruit_BME280 bme; // Extérieur
+Adafruit_BME280 bme; //*Declare the bpm variable, an easy to remember reference for the device*
 Adafruit_SHT31 sht31 = Adafruit_SHT31();
 
 unsigned long delayTime;
@@ -100,7 +102,7 @@ AsyncWebServer server(1030);
 
 // Generally, you should use "unsigned long" for variables that hold time
 // The value will quickly become too large for an int to store
-unsigned long previousMillis = 0;    // will store last time DHT was updated
+unsigned long previousMillis = 0;    
 unsigned long previousMillis2 = 0;
 // Updates DHT readings every 2 seconds
 const long interval = 2000;
@@ -264,7 +266,22 @@ setInterval(function ( ) {
 
 </script>
 </html>)rawliteral";
-
+//-----------------------------------------------------------------------------------------
+// Replaces placeholder with Sensor values
+String processor(const String& var) {
+  //Serial.println(var);
+  if (var == "TEMPERATURE INTERIEUR") {
+    return String(t1);
+    return String(t2);
+    return String(t3);
+  }
+  else if (var == "HUMIDITE INTERIEUR") {
+    return String(h1);
+    return String(h2);
+    return String(h3);
+  }
+  return String();
+}
 //----------------------------Web_SCAPPING_HPA----------------------------------------------
 void webScraping() {
   if (WiFi.status() == WL_CONNECTED) {
@@ -274,7 +291,7 @@ void webScraping() {
     client->setInsecure();
     HTTPClient https;
     Serial.print("[HTTPS] begin...\n");
-    if (https.begin(*client, "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=xxxxxxxxxxxx")) {  // HTTPS
+    if (https.begin(*client, "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=cc47c0be99a04dc341e0bf460802ecf0")) {  // HTTPS
       https.setAuthorization(meteomaticsLogin, meteomaticsPwd);
       Serial.print("[HTTPS] GET...\n");
       // start connection and send HTTP header
@@ -307,7 +324,7 @@ void webScraping() {
 //--------------------------------------PREPA_SQL--------------------------------------------------
 
 void prepaSQL() {
- 
+
   //BME280
   char var_t1[6];
   dtostrf(t1, 3, 1, var_t1);
@@ -342,15 +359,33 @@ void prepaSQL() {
     Serial.println(tab_var[i]);
   }
   Serial.println(tab_var[7]);
+  time_t epochTime = timeClient.getEpochTime();
+  struct tm *ptm = gmtime ((time_t *)&epochTime);
 
   sprintf(insert_Sql_1, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('BME280','Extérieur',%s,%s,%s)", tab_var[0], tab_var[1], tab_var[2]);
   sprintf(insert_Sql_2, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('DHT11','Intérieur',%s,%s,'0')", tab_var[3], tab_var[4]);
   sprintf(insert_Sql_3, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('SHT31','Cave',%s,%s,'0')", tab_var[5], tab_var[6]);
+  sprintf(insert_Sql_4, "INSERT INTO u984373661_prem_db.SensDate (annee,mois,jour,heure,minute) VALUES (%d,%d,%d,%d,%d)", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, timeClient.getHours(), timeClient.getMinutes());
+  sprintf(insert_Sql_8, "SELECT id_date FROM u984373661_prem_db.SensDate WHERE id_date= (select max(id_date) from u984373661_prem_db.SensDate)");
+  row_values *row = NULL;
+  MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
+  cur_mem->execute(insert_Sql_8);
+  column_names *columns = cur_mem->get_columns();
+  do {
+    row = cur_mem->get_next_row();
+    if (row != NULL) {
+      monId = atol(row->values[0]);
+    }
+  } while (row != NULL);
+  Serial.println(monId);
+  sprintf(insert_Sql_5, "INSERT INTO u984373661_prem_db.SensTemp (temp_ext,temp_int,temp_cave,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1,2,3')", tab_var[0], tab_var[3], tab_var[5], monId);
+  sprintf(insert_Sql_6, "INSERT INTO u984373661_prem_db.SensHumid (humid_ext,humid_int,humid_cave,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1,2,3')", tab_var[1], tab_var[4], tab_var[6], monId);
+  sprintf(insert_Sql_7, "INSERT INTO u984373661_prem_db.SensPress (press_ext,id_date,id_lieu) VALUES (%s,%d,'1,2,3')", tab_var[2], monId);
 }
 
 //-----------------------------ENVOI()-------------------------------------------------------------
 void envoi() {
-  
+
   webScraping();
   prepaSQL();
   int interv = 0;
@@ -360,7 +395,7 @@ void envoi() {
       // save the last time you updated the DHT values
       previousMillis2 = currentMillis2;
       if (!conn.connected()) {
-        if (conn.connect(server_addr, 3306, user, passw)) {
+        if (conn.connect(serverAddress, 3306, user_BD, passw_BD)) {
           Serial.println("connection OK.");
         } else {
           Serial.println("connection FAILED.");
@@ -373,6 +408,11 @@ void envoi() {
   cursor->execute(insert_Sql_1);
   cursor->execute(insert_Sql_2);
   cursor->execute(insert_Sql_3);
+  cursor->execute(insert_Sql_4);
+  cursor->execute(insert_Sql_5);
+  cursor->execute(insert_Sql_6);
+  cursor->execute(insert_Sql_7);
+ 
   Serial.println("OK---------------.");
   if (conn.connected()) {
     conn.close();
@@ -425,7 +465,7 @@ void setup() {
   }
 
   Serial.print("Connecting to SQL...  ");
-  if (conn.connect(server_addr, 3306, user, passw))
+  if (conn.connect(serverAddress, 3306, user_BD, passw_BD))
     Serial.println("OK.");
   else
     Serial.println("FAILED.");
@@ -487,10 +527,8 @@ void loop() {
   time_t now = time(nullptr);
   Serial.println("Final time:");  Serial.println(now);
   Serial.println(ctime(&now));
-  //time_t now = time(nullptr);
-  //Serial.println(ctime(&now));
   date = ctime(&now);
-  //delay(1000);
+  
 
 
   unsigned long currentMillis = millis();
@@ -519,7 +557,7 @@ void loop() {
     float newH1 = bme.readHumidity();
     float newH2 = dht2.readHumidity();
     float newH3 = sht31.readHumidity();//dht3.readHumidity();
-    // if humidity read failed, don't change h value
+   
     if (isnan(newH1)) {
       Serial.println("Failed  read !");
     }
@@ -542,8 +580,7 @@ void loop() {
       Serial.println(p1);
     }
   }
-
-  //----------------------------------Partie en attente Ventilation controlé-------------------------------
+   //----------------------------------Partie en attente Ventilation controlé-------------------------------
   //  if (t1 < 17) {
   //    unsigned long temps = millis(); // lecture du temps système, utiliser une variable comme "temps" permet de l'utiliser pour d'autres action dans le programme
   //
@@ -569,7 +606,7 @@ void loop() {
   //
   //  }
 
-  //Gestion du temps
+  //-----------------------------------------------Recupération données temporelles-----------------------------------------------------------
   timeClient.update();
 
   time_t epochTime = timeClient.getEpochTime();
@@ -600,7 +637,7 @@ void loop() {
   int currentYear = ptm->tm_year + 1900;
   Serial.print("Year: ");
   Serial.println(currentYear);
-
+//--------------------------------------------------------------------------------------------------------------------------------------
   emissionSiBesoin();
 
   delay(1000);
