@@ -17,7 +17,7 @@
 #include <time.h>
 #include <FS.h>
 #include <Wire.h> //*Include the Wire library which allows to use the I2C interface*
-#include <Adafruit_Sensor.h>
+//#include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h> //*library to easily take readings from the sensor*
 #include <ESP8266WiFi.h>           // Use this for WiFi instead of Ethernet.h
 #include <MySQL_Connection.h>
@@ -51,11 +51,18 @@ char insert_Sql_1[140];
 char insert_Sql_2[140];
 char insert_Sql_3[140];
 char insert_Sql_4[140];
-char insert_Sql_5[140];
-char insert_Sql_6[140];
-char insert_Sql_7[140];
+
 char insert_Sql_8[140];
-long monId = 0;
+char insert_Sql_9[140];
+char insert_Sql_10[140];
+char insert_Sql_11[140];
+char insert_Sql_12[140];
+char insert_Sql_13[140];
+char insert_Sql_14[140];
+char insert_Sql_15[140];
+
+String tab_var[7];
+
 
 //Week Days
 String weekDays[7] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -102,7 +109,7 @@ AsyncWebServer server(1030);
 
 // Generally, you should use "unsigned long" for variables that hold time
 // The value will quickly become too large for an int to store
-unsigned long previousMillis = 0;    
+unsigned long previousMillis = 0;
 unsigned long previousMillis2 = 0;
 // Updates DHT readings every 2 seconds
 const long interval = 2000;
@@ -329,7 +336,7 @@ void prepaSQL() {
   char var_t1[6];
   dtostrf(t1, 3, 1, var_t1);
   char var_h1[7];
-  dtostrf(h1, 3, 1, var_h1);
+  dtostrf(h1 - 20, 3, 1, var_h1);
   char var_p1[7];
   dtostrf(p1, 3, 1, var_p1);
   //DHT11
@@ -347,7 +354,7 @@ void prepaSQL() {
   Serial.println(var_h2);
   Serial.println(var_t3);
   Serial.println(var_h3);
-  String tab_var[7];
+
   String tab_var2[] = {var_t1, var_h1, var_p1, var_t2, var_h2, var_t3, var_h3};
   Serial.println(tab_var2[7]);
   Serial.println("");
@@ -359,17 +366,21 @@ void prepaSQL() {
     Serial.println(tab_var[i]);
   }
   Serial.println(tab_var[7]);
-  time_t epochTime = timeClient.getEpochTime();
-  struct tm *ptm = gmtime ((time_t *)&epochTime);
+long monId = 0;
 
-  sprintf(insert_Sql_1, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('BME280','Extérieur',%s,%s,%s)", tab_var[0], tab_var[1], tab_var[2]);
-  sprintf(insert_Sql_2, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('DHT11','Intérieur',%s,%s,'0')", tab_var[3], tab_var[4]);
-  sprintf(insert_Sql_3, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('SHT31','Cave',%s,%s,'0')", tab_var[5], tab_var[6]);
-  sprintf(insert_Sql_4, "INSERT INTO u984373661_prem_db.SensDate (annee,mois,jour,heure,minute) VALUES (%d,%d,%d,%d,%d)", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, timeClient.getHours(), timeClient.getMinutes());
-  sprintf(insert_Sql_8, "SELECT id_date FROM u984373661_prem_db.SensDate WHERE id_date= (select max(id_date) from u984373661_prem_db.SensDate)");
-  row_values *row = NULL;
+ 
+ 
+
+
+
+
+
+}
+ long recup_id(const char *requeteSQL) {
+  long monId = 0;
+    row_values *row = NULL;
   MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
-  cur_mem->execute(insert_Sql_8);
+  cur_mem->execute(requeteSQL);
   column_names *columns = cur_mem->get_columns();
   do {
     row = cur_mem->get_next_row();
@@ -377,14 +388,12 @@ void prepaSQL() {
       monId = atol(row->values[0]);
     }
   } while (row != NULL);
-  Serial.println(monId);
-  sprintf(insert_Sql_5, "INSERT INTO u984373661_prem_db.SensTemp (temp_ext,temp_int,temp_cave,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1,2,3')", tab_var[0], tab_var[3], tab_var[5], monId);
-  sprintf(insert_Sql_6, "INSERT INTO u984373661_prem_db.SensHumid (humid_ext,humid_int,humid_cave,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1,2,3')", tab_var[1], tab_var[4], tab_var[6], monId);
-  sprintf(insert_Sql_7, "INSERT INTO u984373661_prem_db.SensPress (press_ext,id_date,id_lieu) VALUES (%s,%d,'1,2,3')", tab_var[2], monId);
-}
-
+    return(monId);
+  }
 //-----------------------------ENVOI()-------------------------------------------------------------
 void envoi() {
+
+ 
 
   webScraping();
   prepaSQL();
@@ -405,15 +414,51 @@ void envoi() {
       }
     }
   }
+
+long monId = 0;
+long monId2 = 0;
+long monId3 = 0;
+long monId4 = 0;
+  time_t epochTime = timeClient.getEpochTime();
+  struct tm *ptm = gmtime ((time_t *)&epochTime);
+  sprintf(insert_Sql_1, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('BME280','Extérieur',%s,%s,%s)", tab_var[0], tab_var[1], tab_var[2]);
+  sprintf(insert_Sql_2, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('DHT11','Intérieur',%s,%s,'0')", tab_var[3], tab_var[4]);
+  sprintf(insert_Sql_3, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('SHT31','Cave',%s,%s,'0')", tab_var[5], tab_var[6]);
+  sprintf(insert_Sql_4, "INSERT INTO u984373661_prem_db.SensDate (annee,mois,jour,heure,minute) VALUES (%d,%d,%d,%d,%d)", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, timeClient.getHours(), timeClient.getMinutes());
+  
   cursor->execute(insert_Sql_1);
   cursor->execute(insert_Sql_2);
   cursor->execute(insert_Sql_3);
   cursor->execute(insert_Sql_4);
-  cursor->execute(insert_Sql_5);
-  cursor->execute(insert_Sql_6);
-  cursor->execute(insert_Sql_7);
+   sprintf(insert_Sql_8, "SELECT id_date FROM u984373661_prem_db.SensDate WHERE id_date= (select max(id_date) from u984373661_prem_db.SensDate)");
+
+monId=recup_id(insert_Sql_8);
+  Serial.println(recup_id(insert_Sql_8));
  
-  Serial.println("OK---------------.");
+   sprintf(insert_Sql_9, "INSERT INTO u984373661_prem_db.SensExt (temp_ext,humid_ext,press_ext,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1')", tab_var[0], tab_var[1], tab_var[2], monId);
+  sprintf(insert_Sql_10, "INSERT INTO u984373661_prem_db.SensInt (temp_int,humid_int,id_date,id_lieu) VALUES (%s,%s,%d,'2')", tab_var[3], tab_var[4], monId);
+  sprintf(insert_Sql_11, "INSERT INTO u984373661_prem_db.SensCave (temp_cave,humid_cave,id_date,id_lieu) VALUES (%s,%s,%d,'3')", tab_var[5], tab_var[6], monId);
+   
+  cursor->execute(insert_Sql_9);
+  sprintf(insert_Sql_12, "SELECT id_ext FROM u984373661_prem_db.SensExt WHERE id_ext= (select max(id_ext) from u984373661_prem_db.SensExt)");
+
+monId2=recup_id(insert_Sql_12);
+  Serial.println(monId2);
+  
+  cursor->execute(insert_Sql_10);
+   sprintf(insert_Sql_13, "SELECT id_int FROM u984373661_prem_db.SensInt WHERE id_int= (select max(id_int) from u984373661_prem_db.SensInt)");
+
+monId3=recup_id(insert_Sql_13);
+  Serial.println(monId3);
+  
+  cursor->execute(insert_Sql_11);
+   sprintf(insert_Sql_14, "SELECT id_cave FROM u984373661_prem_db.SensCave WHERE id_cave= (select max(id_cave) from u984373661_prem_db.SensCave)");
+
+monId4=recup_id(insert_Sql_14);
+  Serial.println(monId4);
+  sprintf(insert_Sql_15, "INSERT INTO u984373661_prem_db.ManagementTHP (id_ext,id_int,id_cave) VALUES (%d,%d,%d)", monId2, monId3, monId4);
+cursor->execute(insert_Sql_15);
+
   if (conn.connected()) {
     conn.close();
   }
@@ -528,7 +573,7 @@ void loop() {
   Serial.println("Final time:");  Serial.println(now);
   Serial.println(ctime(&now));
   date = ctime(&now);
-  
+
 
 
   unsigned long currentMillis = millis();
@@ -557,7 +602,7 @@ void loop() {
     float newH1 = bme.readHumidity();
     float newH2 = dht2.readHumidity();
     float newH3 = sht31.readHumidity();//dht3.readHumidity();
-   
+
     if (isnan(newH1)) {
       Serial.println("Failed  read !");
     }
@@ -580,7 +625,7 @@ void loop() {
       Serial.println(p1);
     }
   }
-   //----------------------------------Partie en attente Ventilation controlé-------------------------------
+  //----------------------------------Partie en attente Ventilation controlé-------------------------------
   //  if (t1 < 17) {
   //    unsigned long temps = millis(); // lecture du temps système, utiliser une variable comme "temps" permet de l'utiliser pour d'autres action dans le programme
   //
@@ -637,7 +682,7 @@ void loop() {
   int currentYear = ptm->tm_year + 1900;
   Serial.print("Year: ");
   Serial.println(currentYear);
-//--------------------------------------------------------------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------------------------------------------------
   emissionSiBesoin();
 
   delay(1000);
