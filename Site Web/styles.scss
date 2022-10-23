@@ -1,0 +1,107 @@
+
+$primaryColor: #978ee9;
+
+html{
+    width: 1600px;
+    margin:auto;
+    
+
+}
+
+header{
+    background-color: #ffffff;
+    border : 4px solid rgb(41, 9, 155);
+}
+/*Barre de menu*/
+nav .first{
+    margin-right: 00px;
+}
+nav button{
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+    border-style:none;
+    font-weight:bold;
+    font-size:larger ;
+    /*white-space: nowrap;*/
+}
+
+nav button:focus, nav button:hover{
+    background-color: none;
+    color: $primaryColor;
+    border-color: none;
+    border-style:none;
+}
+.nav-link, .navbar-brand{
+    color: black !important;
+}
+
+nav li{
+    font-size: 18px;
+    border-style:none;
+}
+.dropdown-item{
+    background-color: white;
+}
+.dropdown-item:focus, .dropdown-item:hover{
+    background-color: none;
+    color: $primaryColor;
+    border-color: none;
+    border-style:none;
+}
+nav #en-cours{
+    color: $primaryColor;
+}
+/*Image Logo Bandeau supérieur*/
+.logo{
+    
+   /* position: absolute;
+    z-index: 10;*/
+    margin-top: -70px;
+    margin-left: 20px;
+}
+.logo1 img{
+    width: 400px;
+    border : 15px solid white;
+}
+body{
+    
+    
+    background-color: #cac7e6;
+}
+h1{
+    word-wrap: break-word;
+    margin-top: 50px;
+    margin-left: 15%;
+    font-weight: bolder;
+}
+.decalTitre{
+    margin-left: 35%;
+}
+
+.sousTitre{
+    margin-top: 100px;
+}
+.liste {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+.liste li {
+    margin-top: 15px;
+    
+}
+ 
+
+
+/*responsive*/
+@media screen and (max-width: 1280px){
+    nav button{
+      font-size: 12px;
+}
+    }
+  
+    @media screen and (max-width: 1060px){
+        nav button{
+            font-size: 9px;
+    }
+        }

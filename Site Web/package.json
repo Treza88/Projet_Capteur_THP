@@ -1,0 +1,11 @@
+{
+  "name": "site-web",
+  "version": "1.0.0",
+  "description": "Projet_THP",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch styles.scss:styles.css"
+  },
+  "author": "Herve Thomesse",
+  "license": "ISC"
+}

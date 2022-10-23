@@ -376,24 +376,40 @@ long monId = 0;
 
 
 }
- long recup_id(const char *requeteSQL) {
+
+ long recup_id() {
   long monId = 0;
     row_values *row = NULL;
   MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
-  cur_mem->execute(requeteSQL);
+  cur_mem->execute("SELECT LAST_INSERT_ID();");
   column_names *columns = cur_mem->get_columns();
-  do {
-    row = cur_mem->get_next_row();
-    if (row != NULL) {
-      monId = atol(row->values[0]);
-    }
-  } while (row != NULL);
+  row = cur_mem->get_next_row();
+  if (row != NULL) {
+    Serial.println("2-----------------------");
+    monId = (atol(row->values[0]));
+    Serial.println(monId);
+  } else {
+    Serial.println("L'enregistrement est vide, bizarre!");
+  }
     return(monId);
   }
+//
+// long recup_id(const char *requeteSQL) {
+//  long monId = 0;
+//    row_values *row = NULL;
+//  MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
+//  cur_mem->execute(requeteSQL);
+//  column_names *columns = cur_mem->get_columns();
+//  do {
+//    row = cur_mem->get_next_row();
+//    if (row != NULL) {
+//      monId = atol(row->values[0]);
+//    }
+//  } while (row != NULL);
+//    return(monId);
+//  }
 //-----------------------------ENVOI()-------------------------------------------------------------
 void envoi() {
-
- 
 
   webScraping();
   prepaSQL();
@@ -432,8 +448,9 @@ long monId4 = 0;
   cursor->execute(insert_Sql_4);
    sprintf(insert_Sql_8, "SELECT id_date FROM u984373661_prem_db.SensDate WHERE id_date= (select max(id_date) from u984373661_prem_db.SensDate)");
 
-monId=recup_id(insert_Sql_8);
-  Serial.println(recup_id(insert_Sql_8));
+//monId=recup_id(insert_Sql_8);
+monId=recup_id();
+  //Serial.println(recup_id(insert_Sql_8));
  
    sprintf(insert_Sql_9, "INSERT INTO u984373661_prem_db.SensExt (temp_ext,humid_ext,press_ext,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1')", tab_var[0], tab_var[1], tab_var[2], monId);
   sprintf(insert_Sql_10, "INSERT INTO u984373661_prem_db.SensInt (temp_int,humid_int,id_date,id_lieu) VALUES (%s,%s,%d,'2')", tab_var[3], tab_var[4], monId);
@@ -442,19 +459,22 @@ monId=recup_id(insert_Sql_8);
   cursor->execute(insert_Sql_9);
   sprintf(insert_Sql_12, "SELECT id_ext FROM u984373661_prem_db.SensExt WHERE id_ext= (select max(id_ext) from u984373661_prem_db.SensExt)");
 
-monId2=recup_id(insert_Sql_12);
+//monId2=recup_id(insert_Sql_12);
+monId2=recup_id();
   Serial.println(monId2);
   
   cursor->execute(insert_Sql_10);
    sprintf(insert_Sql_13, "SELECT id_int FROM u984373661_prem_db.SensInt WHERE id_int= (select max(id_int) from u984373661_prem_db.SensInt)");
 
-monId3=recup_id(insert_Sql_13);
+//monId3=recup_id(insert_Sql_13);
+monId3=recup_id();
   Serial.println(monId3);
   
   cursor->execute(insert_Sql_11);
    sprintf(insert_Sql_14, "SELECT id_cave FROM u984373661_prem_db.SensCave WHERE id_cave= (select max(id_cave) from u984373661_prem_db.SensCave)");
 
-monId4=recup_id(insert_Sql_14);
+//monId4=recup_id(insert_Sql_14);
+monId4=recup_id();
   Serial.println(monId4);
   sprintf(insert_Sql_15, "INSERT INTO u984373661_prem_db.ManagementTHP (id_ext,id_int,id_cave) VALUES (%d,%d,%d)", monId2, monId3, monId4);
 cursor->execute(insert_Sql_15);
