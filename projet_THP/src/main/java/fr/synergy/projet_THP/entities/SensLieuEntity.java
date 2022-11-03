@@ -1,0 +1,16 @@
+package fr.synergy.projet_THP.entities;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="SensLieu")
+public class SensLieuEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_lieu")
+    private Long idLieu;
+    @Column(nullable = false,length = 20)
+    private String lieu;
+    @Column(nullable = false,length = 20)
+    private String capteur;
+}
