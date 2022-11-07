@@ -19,8 +19,10 @@ public class SensIntEntity {
     private float tempInt;
     @Column(nullable = false,name = "humid_int")
     private float himidInt;
-    @Column(nullable = false,name = "id_date")
-    private Long idDate;
-    @Column(nullable = false,name = "id_lieu")
-    private Long idLieu;
+    @OneToOne
+    @JoinColumn(nullable = false,name = "id_date")
+    private SensDateEntity idDate;
+    @ManyToOne
+    @JoinColumn(nullable = false,name = "id_lieu")
+    private SensLieuEntity idLieu;
 }

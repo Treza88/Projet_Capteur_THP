@@ -30,5 +30,7 @@ public class SensDateEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Calendar dateServer;
+    @OneToOne(mappedBy = "idDate")
+    private SensIntEntity sensInt;
 
 }
