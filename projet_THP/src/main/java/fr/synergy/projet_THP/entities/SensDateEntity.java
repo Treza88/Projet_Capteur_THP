@@ -32,5 +32,8 @@ public class SensDateEntity {
     private Calendar dateServer;
     @OneToOne(mappedBy = "idDate")
     private SensIntEntity sensInt;
-
+    @OneToOne(mappedBy = "idDate")
+    private SensIntEntity sensExt;
+    @OneToOne(mappedBy = "idDate")
+    private SensIntEntity sensCave;
 }

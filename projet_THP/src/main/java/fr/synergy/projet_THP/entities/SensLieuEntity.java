@@ -16,4 +16,8 @@ public class SensLieuEntity {
     private String capteur;
     @OneToMany(mappedBy = "idLieu")
     private Collection<SensIntEntity> sensInts;
+    @OneToMany(mappedBy = "idLieu")
+    private Collection<SensIntEntity> sensExts;
+    @OneToMany(mappedBy = "idLieu")
+    private Collection<SensIntEntity> sensCaves;
 }

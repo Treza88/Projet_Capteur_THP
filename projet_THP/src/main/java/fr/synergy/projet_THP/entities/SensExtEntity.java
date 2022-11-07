@@ -22,8 +22,12 @@ public class SensExtEntity {
     private float himidExt;
     @Column(nullable = false,name = "press_ext")
     private float pressExt;
-    @Column(nullable = false,name = "id_date")
-    private Long idDate;
-    @Column(nullable = false,name = "id_lieu")
-    private Long idLieu;
+
+    @OneToOne
+    @JoinColumn(nullable = false,name = "id_date")
+    private SensDateEntity idDate;
+    @ManyToOne
+    @JoinColumn(nullable = false,name = "id_lieu")
+    private SensLieuEntity idLieu;
+
 }
