@@ -377,37 +377,37 @@ long monId = 0;
 
 }
 
- long recup_id() {
-  long monId = 0;
-    row_values *row = NULL;
-  MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
-  cur_mem->execute("SELECT LAST_INSERT_ID();");
-  column_names *columns = cur_mem->get_columns();
-  row = cur_mem->get_next_row();
-  if (row != NULL) {
-    Serial.println("2-----------------------");
-    monId = (atol(row->values[0]));
-    Serial.println(monId);
-  } else {
-    Serial.println("L'enregistrement est vide, bizarre!");
-  }
-    return(monId);
-  }
-//
-// long recup_id(const char *requeteSQL) {
+// long recup_id() {
 //  long monId = 0;
 //    row_values *row = NULL;
 //  MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
-//  cur_mem->execute(requeteSQL);
+//  cur_mem->execute("SELECT LAST_INSERT_ID();");
 //  column_names *columns = cur_mem->get_columns();
-//  do {
-//    row = cur_mem->get_next_row();
-//    if (row != NULL) {
-//      monId = atol(row->values[0]);
-//    }
-//  } while (row != NULL);
+//  row = cur_mem->get_next_row();
+//  if (row != NULL) {
+//    Serial.println("2-----------------------");
+//    monId = (atol(row->values[0]));
+//    Serial.println(monId);
+//  } else {
+//    Serial.println("L'enregistrement est vide, bizarre!");
+//  }
 //    return(monId);
 //  }
+//
+ long recup_id(const char *requeteSQL) {
+  long monId = 0;
+    row_values *row = NULL;
+  MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
+  cur_mem->execute(requeteSQL);
+  column_names *columns = cur_mem->get_columns();
+  do {
+    row = cur_mem->get_next_row();
+    if (row != NULL) {
+      monId = atol(row->values[0]);
+    }
+  } while (row != NULL);
+    return(monId);
+  }
 //-----------------------------ENVOI()-------------------------------------------------------------
 void envoi() {
 
@@ -440,43 +440,43 @@ long monId4 = 0;
   sprintf(insert_Sql_1, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('BME280','Extérieur',%s,%s,%s)", tab_var[0], tab_var[1], tab_var[2]);
   sprintf(insert_Sql_2, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('DHT11','Intérieur',%s,%s,'0')", tab_var[3], tab_var[4]);
   sprintf(insert_Sql_3, "INSERT INTO u984373661_prem_db.SensorData (Capteur,Location,Temp,Humid,Press) VALUES ('SHT31','Cave',%s,%s,'0')", tab_var[5], tab_var[6]);
-  sprintf(insert_Sql_4, "INSERT INTO u984373661_prem_db.SensDate (annee,mois,jour,heure,minute) VALUES (%d,%d,%d,%d,%d)", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, timeClient.getHours(), timeClient.getMinutes());
+  sprintf(insert_Sql_4, "INSERT INTO u984373661_prem_db.sens_date (annee,mois,jour,heure,minute) VALUES (%d,%d,%d,%d,%d)", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, timeClient.getHours(), timeClient.getMinutes());
   
   cursor->execute(insert_Sql_1);
   cursor->execute(insert_Sql_2);
   cursor->execute(insert_Sql_3);
   cursor->execute(insert_Sql_4);
-   sprintf(insert_Sql_8, "SELECT id_date FROM u984373661_prem_db.SensDate WHERE id_date= (select max(id_date) from u984373661_prem_db.SensDate)");
+   sprintf(insert_Sql_8, "SELECT id_date FROM u984373661_prem_db.sens_date WHERE id_date= (select max(id_date) from u984373661_prem_db.sens_date)");
 
-//monId=recup_id(insert_Sql_8);
-monId=recup_id();
+monId=recup_id(insert_Sql_8);
+//monId=recup_id();
   //Serial.println(recup_id(insert_Sql_8));
  
-   sprintf(insert_Sql_9, "INSERT INTO u984373661_prem_db.SensExt (temp_ext,humid_ext,press_ext,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1')", tab_var[0], tab_var[1], tab_var[2], monId);
-  sprintf(insert_Sql_10, "INSERT INTO u984373661_prem_db.SensInt (temp_int,humid_int,id_date,id_lieu) VALUES (%s,%s,%d,'2')", tab_var[3], tab_var[4], monId);
-  sprintf(insert_Sql_11, "INSERT INTO u984373661_prem_db.SensCave (temp_cave,humid_cave,id_date,id_lieu) VALUES (%s,%s,%d,'3')", tab_var[5], tab_var[6], monId);
+   sprintf(insert_Sql_9, "INSERT INTO u984373661_prem_db.sens_ext (temp_ext,humid_ext,press_ext,id_date,id_lieu) VALUES (%s,%s,%s,%d,'1')", tab_var[0], tab_var[1], tab_var[2], monId);
+  sprintf(insert_Sql_10, "INSERT INTO u984373661_prem_db.sens_int (temp_int,humid_int,id_date,id_lieu) VALUES (%s,%s,%d,'2')", tab_var[3], tab_var[4], monId);
+  sprintf(insert_Sql_11, "INSERT INTO u984373661_prem_db.sens_cave (temp_cave,humid_cave,id_date,id_lieu) VALUES (%s,%s,%d,'3')", tab_var[5], tab_var[6], monId);
    
   cursor->execute(insert_Sql_9);
-  sprintf(insert_Sql_12, "SELECT id_ext FROM u984373661_prem_db.SensExt WHERE id_ext= (select max(id_ext) from u984373661_prem_db.SensExt)");
+  sprintf(insert_Sql_12, "SELECT id_ext FROM u984373661_prem_db.sens_ext WHERE id_ext= (select max(id_ext) from u984373661_prem_db.sens_ext)");
 
-//monId2=recup_id(insert_Sql_12);
-monId2=recup_id();
+monId2=recup_id(insert_Sql_12);
+//monId2=recup_id();
   Serial.println(monId2);
   
   cursor->execute(insert_Sql_10);
-   sprintf(insert_Sql_13, "SELECT id_int FROM u984373661_prem_db.SensInt WHERE id_int= (select max(id_int) from u984373661_prem_db.SensInt)");
+   sprintf(insert_Sql_13, "SELECT id_int FROM u984373661_prem_db.sens_int WHERE id_int= (select max(id_int) from u984373661_prem_db.sens_int)");
 
-//monId3=recup_id(insert_Sql_13);
-monId3=recup_id();
+monId3=recup_id(insert_Sql_13);
+//monId3=recup_id();
   Serial.println(monId3);
   
   cursor->execute(insert_Sql_11);
-   sprintf(insert_Sql_14, "SELECT id_cave FROM u984373661_prem_db.SensCave WHERE id_cave= (select max(id_cave) from u984373661_prem_db.SensCave)");
+   sprintf(insert_Sql_14, "SELECT id_cave FROM u984373661_prem_db.sens_cave WHERE id_cave= (select max(id_cave) from u984373661_prem_db.sens_cave)");
 
-//monId4=recup_id(insert_Sql_14);
-monId4=recup_id();
+monId4=recup_id(insert_Sql_14);
+//monId4=recup_id();
   Serial.println(monId4);
-  sprintf(insert_Sql_15, "INSERT INTO u984373661_prem_db.ManagementTHP (id_ext,id_int,id_cave) VALUES (%d,%d,%d)", monId2, monId3, monId4);
+  sprintf(insert_Sql_15, "INSERT INTO u984373661_prem_db.management_thp (id_ext,id_int,id_cave) VALUES (%d,%d,%d)", monId2, monId3, monId4);
 cursor->execute(insert_Sql_15);
 
   if (conn.connected()) {

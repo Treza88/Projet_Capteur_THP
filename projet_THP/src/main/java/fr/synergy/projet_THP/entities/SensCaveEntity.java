@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="SensCave")
+@Table(name="\"SensCave\"")
 public class SensCaveEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
