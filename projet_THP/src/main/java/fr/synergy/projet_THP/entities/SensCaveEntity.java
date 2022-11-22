@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="\"SensCave\"")
+@Table(name="SensCave")
 public class SensCaveEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
