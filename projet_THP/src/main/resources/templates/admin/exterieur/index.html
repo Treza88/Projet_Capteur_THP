@@ -1,0 +1,25 @@
+
+
+<h1>Exterieur</h1>
+<table class="table table-hover" border="1" data-th-if="${pcave.size()>0}">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Temp</th>
+        <th scope="col">Humid</th>
+        <!--        <th scope="col">Date</th>-->
+        <!--        <th scope="col">lieu</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="c : ${pcave}">
+        <td data-th-text="${c.idCave}"></td>
+        <td data-th-text="${c.tempCave}"></td>
+        <td data-th-text="${c.humidCave}"></td>
+        <!--        <td data-th-text="${c.idDate}"></td>-->
+        <!--        <td data-th-text="$c.IdLieu}"></td>-->
+        <!--        <td ><a data-th-href="@{'/admin/videos/'+${v.id}}">detail</a> </td>-->
+        <!--<td ><a th:href="@{'/admin/videos/{id}(id=${u.id})}">detail</a> </td>--><!-- Idem ligne au dessus-->
+    </tr>
+    </tbody>
+</table>

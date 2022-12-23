@@ -93,13 +93,43 @@
     </nav>
   </div>
   <div class="logo">
-    <a class="logo1" href="index.html"><img src="/images/logo trv.png"/></a>
+    <a class="logo1" href="index.html"><img src="images/logo_trv.png"/></a>
     
    
   </div>
 
 </header>
-    
+    <h1>Bienvenu</h1>
+<div id="container"></div>
+
+<script>
+    const container = document.getElementById("container")
+fetch('http://localhost:8080/api/temps')
+  .then(response => response.json())
+  .then(commits => alert(commits[1].tempCave,commits[1].tempExt,commits[1].tempInt));
+  
+    fetch("http://localhost:8080/api/temps")
+        .then(res => res.json())
+        .then(temps => {
+            let str = "<section>";
+
+            for (let t of temps){
+                str += `
+				<article>
+					<h4>${t.tempCave}</h4>
+					<h4>${t.tempExt}</h4>
+					<h4>${t.tempInt}</h4>
+					<h4>${t.dateServer}</h4>
+					
+				</article>
+			`
+            }
+
+            str += "</section>";
+
+            container.innerHTML = str;
+        })
+</script>
   
 </body>
 </html>

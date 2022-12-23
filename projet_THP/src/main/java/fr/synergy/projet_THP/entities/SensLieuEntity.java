@@ -17,7 +17,7 @@ public class SensLieuEntity {
     @OneToMany(mappedBy = "idLieu")
     private Collection<SensIntEntity> sensInts;
     @OneToMany(mappedBy = "idLieu")
-    private Collection<SensIntEntity> sensExts;
+    private Collection<SensExtEntity> sensExts;
     @OneToMany(mappedBy = "idLieu")
-    private Collection<SensIntEntity> sensCaves;
+    private Collection<SensCaveEntity> sensCaves;
 }

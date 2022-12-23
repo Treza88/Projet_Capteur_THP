@@ -19,7 +19,7 @@ public class SensCaveEntity {
     @Column(nullable = false,name = "temp_cave")
     private float tempCave;
     @Column(nullable = false,name = "humid_cave")
-    private float himidCave;
+    private float humidCave;
     @OneToOne
     @JoinColumn(nullable = false,name = "id_date")
     private SensDateEntity idDate;

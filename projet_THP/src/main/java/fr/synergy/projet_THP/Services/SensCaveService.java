@@ -5,6 +5,8 @@ import fr.synergy.projet_THP.repositories.SenCaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class SensCaveService {
 
@@ -16,6 +18,10 @@ public class SensCaveService {
     public Iterable<SensCaveEntity> findAll(){return sensCaveRepository.findAll();}
 
 
+    public Optional<SensCaveEntity> findById(Long id) {return sensCaveRepository.findById(id);
+    }
+    public Iterable<SensCaveEntity> findByIdInvOrderLast24() {
+        return sensCaveRepository.findByIdInvOrderLast24();
+    }
 
-    
 }

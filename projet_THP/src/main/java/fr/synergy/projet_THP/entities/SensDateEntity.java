@@ -17,23 +17,23 @@ public class SensDateEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_date")
     private Long idDate;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "INt(4)")
     private  Integer annee;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "INT(2)")
     private  Integer mois;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "INT(2)")
     private  Integer jour;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "INT(2)")
     private  Integer heure;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "INT(2)")
     private  Integer minute;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "TIMESTAMP")
     private Calendar dateServer;
     @OneToOne(mappedBy = "idDate")
     private SensIntEntity sensInt;
     @OneToOne(mappedBy = "idDate")
-    private SensIntEntity sensExt;
+    private SensExtEntity sensExt;
     @OneToOne(mappedBy = "idDate")
-    private SensIntEntity sensCave;
+    private SensCaveEntity sensCave;
 }
