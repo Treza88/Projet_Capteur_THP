@@ -102,12 +102,34 @@
     <h1>Bienvenu</h1>
 <div id="container"></div>
 
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+
+<script 
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js">
+</script>
+
+
+
 <script>
     const container = document.getElementById("container")
 fetch('http://localhost:8080/api/temps')
   .then(response => response.json())
-  .then(commits => alert(commits[1].tempCave,commits[1].tempExt,commits[1].tempInt));
-  
+  //talert=commits[1].tempCave);
+  .then(commits => {                                        
+//var aze =[]
+//for (let r of commits){
+//aze.push(r.tempExt);
+//aze.push(r.tempInt);
+//aze.push(r.tempCave);
+//aze.push(r.dateServer);
+alert(commits.tempCave);
+//}
+})
+
+
     fetch("http://localhost:8080/api/temps")
         .then(res => res.json())
         .then(temps => {
