@@ -8,10 +8,10 @@
     <!-- Bootstrap5-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link href="bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
+    
     <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- JS Jquery Jqueryui-->
-    <script src="script.js" async></script>
     
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -20,8 +20,11 @@
     <!-- CSS-->
     <link href="styles.css" rel="stylesheet">
     <!--Script JS-->
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js" integrity="sha512-MC1YbhseV2uYKljGJb7icPOjzF2k6mihfApPyPhEAo3NsLUW0bpgtL4xYWK1B+1OuSrUkfOTfhxrRKCz/Jp3rQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
+    <script src="script.js"></script>
+    
 </head>
 
 <body>
@@ -102,34 +105,22 @@
 
 </header>
     <h1>Bienvenu</h1>
-<div id="container"></div>
 
-<div>
-  <canvas id="myChart" width="400" height="400"></canvas>
+
+
+
+
+<div class="chartContainer">
+  <canvas id="myChart" ></canvas>
 </div>
 
 
-<script 
-src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js">
-</script>
+<div id="container"></div>
 
 
 
 <script>
     const container = document.getElementById("container")
-fetch('http://localhost:8080/api/temps')
-  .then(response => response.json())
-  //talert=commits[1].tempCave);
-  .then(commits => {                                        
-//var aze =[]
-//for (let r of commits){
-//aze.push(r.tempExt);
-//aze.push(r.tempInt);
-//aze.push(r.tempCave);
-//aze.push(r.dateServer);
-//alert(commits.tempCave);
-//}
-})
 
 
     fetch("http://localhost:8080/api/temps")

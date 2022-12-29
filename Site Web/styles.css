@@ -1,4 +1,11 @@
 @charset "UTF-8";
+.chartContainer {
+  display: inline-block;
+  position: relative;
+  width: 800px !important;
+  height: 400px !important;
+}
+
 html {
   width: 1600px;
   margin: auto;
@@ -106,6 +113,4 @@ h1 {
   nav button {
     font-size: 9px;
   }
-}
-
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */
