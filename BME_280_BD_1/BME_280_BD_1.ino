@@ -336,7 +336,7 @@ void prepaSQL() {
   char var_t1[6];
   dtostrf(t1, 3, 1, var_t1);
   char var_h1[7];
-  dtostrf(h1 - 20, 3, 1, var_h1);
+  dtostrf(h1, 3, 1, var_h1);
   char var_p1[7];
   dtostrf(p1, 3, 1, var_p1);
   //DHT11

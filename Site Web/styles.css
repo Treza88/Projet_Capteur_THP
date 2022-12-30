@@ -2,8 +2,8 @@
 .chartContainer {
   display: inline-block;
   position: relative;
-  width: 800px !important;
-  height: 400px !important;
+  width: 1200px !important;
+  height: 600px !important;
 }
 
 html {
