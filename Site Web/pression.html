@@ -11,7 +11,7 @@
     <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- JS Jquery Jqueryui-->
-    <script src="script.js" async></script>
+    
     
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -20,6 +20,10 @@
     <!-- CSS-->
     <link href="styles.css" rel="stylesheet">
     <!--Script JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js" integrity="sha512-MC1YbhseV2uYKljGJb7icPOjzF2k6mihfApPyPhEAo3NsLUW0bpgtL4xYWK1B+1OuSrUkfOTfhxrRKCz/Jp3rQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -93,14 +97,33 @@
     </nav>
   </div>
   <div class="logo">
-    <a class="logo1" href="index.html"><img src="/images/logo trv.png"/></a>
+    <a class="logo1" href="index.html"><img src="images/logo_trv.png"/></a>
     
    
   </div>
 
 </header>
     
+<h1>Pression atmosphérique des dernières 24 heures</h1>
+
+<div class="chartContainer">
+  <canvas id="myChartPress" ></canvas>
+</div>
+<div id="container">
+  <button onClick="datePickerZero()">Last 24</button>
   
+  <label>
+    Sélectionnr une date:
+    <input id="getPickerDate" 
+    type="date" 
+    name="oneDate"
+    min="2022-10-19" />
+  </label>
+  
+  <script>
+  
+  </script>
+</div>
 </body>
 </html>
 

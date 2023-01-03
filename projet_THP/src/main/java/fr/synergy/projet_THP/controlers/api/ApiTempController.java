@@ -1,23 +1,35 @@
 package fr.synergy.projet_THP.controlers.api;
 
+import fr.synergy.projet_THP.apiJoinClass.ApiGetDay;
 import fr.synergy.projet_THP.apiJoinClass.ApiTempJoin;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
+@CrossOrigin("*")
 public class ApiTempController {
     @Autowired
     private ApiTempJoin apiTempJoins;
-
-    @GetMapping("api/temps")
-    @CrossOrigin("*")
-    public Iterable<ApiTempJoin> tempAllCaptLast24(){
+//    @Autowired
+//    private ApiGetDay apiGetDay;
+    @GetMapping("api/last24")
+    public Iterable<ApiTempJoin> dataLast24(){
         return apiTempJoins.findByIdInvOrderLast24Temp();
     }
 
-
-
+    @GetMapping("api/{day}")
+    public Iterable<ApiTempJoin> data1day(@PathVariable String day){
+        return apiTempJoins.findByDay(day);
+    }
+@PostMapping(value = "/api/getDay", consumes = {"application/json"})
+    public ApiGetDay getDay(@RequestBody ApiGetDay apiGetDay){
+    String  oneDay = apiGetDay.getGetDay();
+    System.out.println(oneDay);
+data1day(oneDay);
+        return apiGetDay;
+}
 }
