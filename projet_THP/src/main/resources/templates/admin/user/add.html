@@ -1,0 +1,50 @@
+
+<form action="/admin/users/add" method="post" data-th-object="${backUserEntity}">
+    <div class="mb-3">
+        <label data-th-for="firsName" class="form-label"> Prénom</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{firstName}">
+    </div>
+    <div class="mb-3">
+        <label data-th-for="lastName" class="form-label"> Nom</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{lastName}">
+    </div>
+    <div class="mb-3">
+        <label data-th-for="login" class="form-label"> Civilité</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{login}">
+    </div>
+    <div class="mb-3">
+        <label data-th-for="password" class="form-label"> Mot de Passe</label>
+        <input class="form-control form-control-lg" type="password"
+               data-th-field="*{password}"
+               placeholder="password">
+        <span data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}">Password Error</span>
+    </div>
+<!--    <div class="mb-3">-->
+<!--        <label data-th-for="confirmPassword" class="form-label">Confirmation Mot de Passe</label>-->
+<!--        <input class="form-control form-control-lg" type="password"-->
+<!--               data-th-field="*{confirmPassword}"-->
+<!--               placeholder="confirmPassword">-->
+<!--        <div class="alert alert-danger" role="alert" data-th-if="${#fields.hasErrors('confirmPassword')}" data-th-errors="*{confirmPassword}">Password Error</div>-->
+<!--    </div>-->
+    <div class="mb-3">
+        <label data-th-for="role" class="form-label"> Role</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{role}">
+    </div>
+    <div class="mb-3">
+        <label data-th-for="mail" class="form-label"> Email</label>
+        <input class="form-control form-control-lg alert alert-secondary" role="alert" type="email"
+               data-th-field="*{mail}"
+               placeholder="tartampion.fr"
+               required><!--patern avec expression reguliere-->
+        <div class="alert alert-danger" role="alert" data-th-if="${#fields.hasErrors('mail')}" data-th-errors="*{mail}">Email Error</div>
+    </div>
+    <div class="mb-3">
+        <button class="mb-3 form-control form-control-lg btn btn-primary "type="submit">Valider</button>
+        <button class="mb-3 form-control form-control-lg btn btn-warning" type="submit">Effacer</button>
+    </div>
+</form>
+

@@ -1,4 +1,4 @@
-package fr.synergy.projet_THP.controlers.admin.SensExt;
+package fr.synergy.projet_THP.controlers.admin;
 
 
 import fr.synergy.projet_THP.Services.SensExtService;

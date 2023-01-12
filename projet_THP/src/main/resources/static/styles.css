@@ -1,13 +1,12 @@
 @charset "UTF-8";
 html {
-  width: 1600px;
+  width: 80%;
   margin: auto;
 }
 
 header {
   background-color: #ffffff;
   border: 4px solid rgb(41, 9, 155);
-  margin-top: 50px;
 }
 
 /*Barre de menu*/
@@ -65,7 +64,7 @@ nav #en-cours {
 }
 
 .logo1 img {
-  width: 400px;
+  width: 30%;
   border: 15px solid white;
 }
 
@@ -97,6 +96,22 @@ h1 {
   margin-top: 15px;
 }
 
+.chartContainer {
+  display: block;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px !important;
+  height: 400px !important;
+}
+
+#container {
+  display: inline-block;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*responsive*/
 @media screen and (max-width: 1280px) {
   nav button {
@@ -107,6 +122,19 @@ h1 {
   nav button {
     font-size: 9px;
   }
+  .logo {
+    /* position: absolute;
+     z-index: 10;*/
+    margin-top: 150px;
+    margin-left: 20px;
+  }
+  .logo1 img {
+    width: 25%;
+    border: 15px solid white;
+  }
 }
-
-/*# sourceMappingURL=styles.css.map */
+@media screen and (max-width: 900px) {
+  nav button {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=styles.css.map */

@@ -11,7 +11,7 @@
     <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- JS Jquery Jqueryui-->
-    <script src="script.js" async></script>
+    
     
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -20,6 +20,10 @@
     <!-- CSS-->
     <link href="styles.css" rel="stylesheet">
     <!--Script JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js" integrity="sha512-MC1YbhseV2uYKljGJb7icPOjzF2k6mihfApPyPhEAo3NsLUW0bpgtL4xYWK1B+1OuSrUkfOTfhxrRKCz/Jp3rQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -60,7 +64,7 @@
       <form>
         <div class="btn_contact">
           <a href="pression.html">
-          <button class=" " type="button">Pression report</button>
+          <button id="en-cours" class=" " type="button">Pression report</button>
           </a>
         </div>
       </form>
@@ -74,18 +78,18 @@
             <li><div class="container mt-3">
             </div>
             </li>
-            <li><a class="dropdown-item" href="mareriel.html"><strong>Module ESP8266</strong></a></li>
-            <li><a class="dropdown-item" href="mareriel.html"><strong>BME280</strong></a></li>
-            <li><a class="dropdown-item" href="mareriel.html"><strong>DHT11</strong></a></li>
-            <li><a class="dropdown-item" href="mareriel.html"><strong>SHT31</strong></a></li>
+            <li><a class="dropdown-item" href="#"><strong>Module ESP8266</strong></a></li>
+            <li><a class="dropdown-item" href="#"><strong>BME280</strong></a></li>
+            <li><a class="dropdown-item" href="#"><strong>DHT11</strong></a></li>
+            <li><a class="dropdown-item" href="#"><strong>SHT31</strong></a></li>
           </ul>
         </div>
       </form>
   
       <form>
         <div class=" first btn_contact">
-          <a href="contact.html">
-          <button id="en-cours" class=" " type="button">Contact</button>
+          <a href="http://85.168.31.223:8080/admin/">
+          <button class=" " type="button">Admin</button>
         </a>
         </div>
       </form>
@@ -100,7 +104,21 @@
 
 </header>
     
-  
+<h1>Pression atmosphérique des dernières 24 heures</h1>
+
+<div class="chartContainer">
+  <canvas id="myChartPress" ></canvas>
+</div>
+<div id="container">
+  <button id="btLast24">Last 24</button>
+  <label>
+    Sélectionnr une date:
+    <input id="getPickerDate" 
+    type="date" 
+    name="oneDate"
+    min="2022-10-19" />
+  </label>
+</div>
 </body>
 </html>
 

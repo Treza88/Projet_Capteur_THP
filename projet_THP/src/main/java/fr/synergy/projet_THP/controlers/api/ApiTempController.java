@@ -10,26 +10,29 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin("*")
+
 public class ApiTempController {
     @Autowired
     private ApiTempJoin apiTempJoins;
 //    @Autowired
 //    private ApiGetDay apiGetDay;
     @GetMapping("api/last24")
+    @CrossOrigin("*")
     public Iterable<ApiTempJoin> dataLast24(){
         return apiTempJoins.findByIdInvOrderLast24Temp();
     }
 
     @GetMapping("api/{day}")
+    @CrossOrigin("*")
     public Iterable<ApiTempJoin> data1day(@PathVariable String day){
         return apiTempJoins.findByDay(day);
     }
-@PostMapping(value = "/api/getDay", consumes = {"application/json"})
+
+    @PostMapping(value = "/api/getDay", consumes = {"application/json"})
     public ApiGetDay getDay(@RequestBody ApiGetDay apiGetDay){
     String  oneDay = apiGetDay.getGetDay();
     System.out.println(oneDay);
-data1day(oneDay);
-        return apiGetDay;
+    data1day(oneDay);
+    return apiGetDay;
 }
 }

@@ -6,55 +6,31 @@ var humidInt1 = [];
 var humidCave1 = [];
 var pressExt1 = [];
 var dateServer1 = [];
+day = "";
 
-/*addEventListener("change", (event) => {});
-
-onchange = (event) => {
-  var getDate = $("#getPickerDate").val();
-  //window.location.reload(true);
-  document.dispatchEvent(
-    
-  );
-  alert("dgdfg");
-};*/
-
-/*function datePickerZero() {
-  //$("#getPickerDate").datepicker("setDate", null);
-  window.location.reload(true);
-}*/
+//Changement du datePicker et actualisation de la page
 document.addEventListener("DOMContentLoaded", function () {
   var dateInput = document.querySelector('[name="oneDate"]');
   dateInput.addEventListener("input", function (event) {
-    var day = $("#getPickerDate").val();
-    sessionStorage.setItem("getDay", day);
-    history.go();
-    day = sessionStorage.getItem("getDay");
-    //alert(day);
+    day = $("#getPickerDate").val();
+    localStorage.setItem("getDay", day);
+    window.location.reload(true);
+  });
+  //Récupération de la variable localStorage
+  if (localStorage.getItem("getDay")) {
+    day = localStorage.getItem("getDay");
     $("#getPickerDate").val(day);
+  }
+
+  const btLast24 = document.querySelector("#btLast24");
+  btLast24.addEventListener("click", (event) => {
+    localStorage.removeItem("getDay");
+    $("#getPickerDate").datepicker("setDate", null);
+    window.location.reload(true);
+    window.location.reload(true);
   });
 
-  //fetch("some.json", {cache: "force-cache"})
-  // .then(function(response) { /* consume the response */ });
-  /*dateInput.addEventListener("change", function (event) {
-    //alert($("#getPickerDate").val());
-
-    $("#datepicker").val(day);
-    alert($("#getPickerDate").val("2022-01-01"));
-    alert(day);*/
-  //var WshShell = new ActiveXObject("WScript.Shell");
-  //WshShell.SendKeys("^R");
-  /*fetch("http://localhost:8080/api/getDay", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ getDay: $("#getPickerDate").val() }),
-  })
-    .then((response) => response.json())
-    .then((response) => console.log(JSON.stringify(response)));*/
-  //});
-  //alert(day);
+  //Import des données et affichage du Graphe Chart.js
   json24();
 
   async function json24() {
@@ -198,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+//Actualisation de la page toutes les heures et 1 minute
 strict();
 function strict() {
   // Syntaxe en mode strict au niveau de la fonction

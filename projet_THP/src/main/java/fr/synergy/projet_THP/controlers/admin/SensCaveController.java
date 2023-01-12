@@ -1,4 +1,4 @@
-package fr.synergy.projet_THP.controlers.admin.SensCave;
+package fr.synergy.projet_THP.controlers.admin;
 
 import fr.synergy.projet_THP.Services.SensCaveService;
 import fr.synergy.projet_THP.entities.SensCaveEntity;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("admin/cave")
-public class SensCaveControler {
+public class SensCaveController {
 
     @Autowired
     SensCaveService sensCaveService;

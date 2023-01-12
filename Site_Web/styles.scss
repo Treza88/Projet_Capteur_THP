@@ -3,7 +3,7 @@ $primaryColor: #978ee9;
 
 
 html{
-    width: 1600px;
+    width: 80%;
     margin:auto;
     
 
@@ -62,7 +62,7 @@ nav #en-cours{
     margin-left: 20px;
 }
 .logo1 img{
-    width: 400px;
+    width: 30%;
     border : 15px solid white;
 }
 body{
@@ -96,8 +96,8 @@ h1{
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    width: 1200px !important;
-    height: 600px !important;
+    width: 800px !important;
+    height: 400px !important;
 }
 #container{
     display: inline-block;
@@ -118,4 +118,21 @@ h1{
         nav button{
             font-size: 9px;
     }
+
+    .logo{
+    
+        /* position: absolute;
+         z-index: 10;*/
+         margin-top: 150px;
+         margin-left: 20px;
+     }
+     .logo1 img{
+         width: 25%;
+         border : 15px solid white;
+     }
         }
+        @media screen and (max-width: 900px){
+            nav button{
+              font-size: 12px;
+        }
+    }

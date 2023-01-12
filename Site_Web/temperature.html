@@ -8,10 +8,10 @@
     <!-- Bootstrap5-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link href="bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
+    
     <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- JS Jquery Jqueryui-->
-    
     
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -23,7 +23,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js" integrity="sha512-MC1YbhseV2uYKljGJb7icPOjzF2k6mihfApPyPhEAo3NsLUW0bpgtL4xYWK1B+1OuSrUkfOTfhxrRKCz/Jp3rQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    
 </head>
 
 <body>
@@ -46,7 +47,7 @@
       <form>
         <div class=" btn_contact">
           <a href="temperature.html">
-          <button class=" " type="button">Température report</button>
+          <button id="en-cours" class=" " type="button">Température report</button>
         </a>
         </div>
       </form>
@@ -64,7 +65,7 @@
       <form>
         <div class="btn_contact">
           <a href="pression.html">
-          <button id="en-cours" class=" " type="button">Pression report</button>
+          <button class=" " type="button">Pression report</button>
           </a>
         </div>
       </form>
@@ -88,8 +89,8 @@
   
       <form>
         <div class=" first btn_contact">
-          <a href="contact.html">
-          <button class=" " type="button">Contact</button>
+          <a href="http://85.168.31.223:8080/login/">
+          <button class=" " type="button">Admin</button>
         </a>
         </div>
       </form>
@@ -103,15 +104,18 @@
   </div>
 
 </header>
-    
-<h1>Pression atmosphérique des dernières 24 heures</h1>
+    <h1>Température des dernières 24 heures</h1>
+
+
+
+
 
 <div class="chartContainer">
-  <canvas id="myChartPress" ></canvas>
+  <canvas id="myChartTemp" ></canvas>
 </div>
+
 <div id="container">
-  <button onClick="datePickerZero()">Last 24</button>
-  
+  <button id="btLast24">Last 24</button>
   <label>
     Sélectionnr une date:
     <input id="getPickerDate" 
@@ -119,11 +123,8 @@
     name="oneDate"
     min="2022-10-19" />
   </label>
-  
-  <script>
-  
-  </script>
 </div>
+
 </body>
 </html>
 

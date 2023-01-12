@@ -5,7 +5,7 @@
 
     <form>
         <div class="btn_contact">
-            <a href="index.html">
+            <a href="index">
                 <button id="en-cours" class=" " type="button">Accueil</button>
             </a>
         </div>
@@ -31,7 +31,7 @@
 
     <form>
         <div class="btn_contact">
-            <a href="cave">
+            <a href="/admin/cave">
                 <button class=" " type="button">Cave</button>
             </a>
         </div>
@@ -40,25 +40,27 @@
     <form >
         <div class="dropdown">
             <button type="button" class="  dropdown-toggle" data-bs-toggle="dropdown">
-                Matériel d'acquisition<br>de données
+                Users
             </button>
             <ul class="dropdown-menu">
                 <li><div class="container mt-3">
                 </div>
                 </li>
-                <li><a class="dropdown-item" href="materiel.html"><strong>Module ESP8266</strong></a></li>
-                <li><a class="dropdown-item" href="materiel.html"><strong>BME280</strong></a></li>
-                <li><a class="dropdown-item" href="materiel.html"><strong>DHT11</strong></a></li>
-                <li><a class="dropdown-item" href="materiel.html"><strong>SHT31</strong></a></li>
+                <li><a class="dropdown-item" href="users"><strong>Users list</strong></a></li>
+                <li><a class="dropdown-item" href="users/add"><strong>User add</strong></a></li>
             </ul>
         </div>
     </form>
-
-    <form>
+<!--    <form data-th-action="@{/logout}" method="post">-->
+<!--        <div class=" first btn_contact">-->
+<!--        <input type="text" value="Sign Out"/>-->
+<!--        </div>-->
+<!--    </form>-->
+    <form id="form1" data-th-action="@{/logout}" method="post">
         <div class=" first btn_contact">
-            <a href="contact.html">
-                <button class=" " type="button">Contact</button>
-            </a>
+
+                <button form="form1" data-th-formaction="@{/logout}" data-th-formmethod="post" >Déconnection</button>
+
         </div>
     </form>
 
