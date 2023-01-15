@@ -1,7 +1,7 @@
 package fr.synergy.projet_THP.Services;
 
 import fr.synergy.projet_THP.entities.SensCaveEntity;
-import fr.synergy.projet_THP.repositories.SenCaveRepository;
+import fr.synergy.projet_THP.repositories.SensCaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 public class SensCaveService {
 
     @Autowired
-    private  SenCaveRepository sensCaveRepository;
+    private SensCaveRepository sensCaveRepository;
 
     public SensCaveEntity Save(SensCaveEntity sensCave){return sensCaveRepository.save(sensCave);}
 

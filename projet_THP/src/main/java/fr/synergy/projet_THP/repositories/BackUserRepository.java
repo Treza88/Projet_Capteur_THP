@@ -16,5 +16,5 @@ public interface BackUserRepository extends CrudRepository<BackUserEntity,Long> 
     Iterable<SensCaveEntity> findByLogin();
 
 
-    Optional<Object> findByUsername(String username);
+   
 }
