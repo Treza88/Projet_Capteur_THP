@@ -27,7 +27,31 @@ public class BackUserEntity {
     @Column(name="last_name",nullable = false)
     private String lastName;
 
-@Column(name="login",nullable = false)
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Column(name="login",nullable = false)
 private String login;
 
 @Column(nullable = false)

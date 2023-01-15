@@ -28,11 +28,12 @@ public class ApiTempController {
         return apiTempJoins.findByDay(day);
     }
 
-    @PostMapping(value = "/api/getDay", consumes = {"application/json"})
-    public ApiGetDay getDay(@RequestBody ApiGetDay apiGetDay){
-    String  oneDay = apiGetDay.getGetDay();
-    System.out.println(oneDay);
-    data1day(oneDay);
-    return apiGetDay;
-}
+//    @PostMapping(value = "/api/getDay", consumes = {"application/json"})
+//    @CrossOrigin("*")
+//    public ApiGetDay getDay(@RequestBody ApiGetDay apiGetDay){
+//    String  oneDay = apiGetDay.getGetDay();
+//    System.out.println(oneDay);
+//    data1day(oneDay);
+//    return apiGetDay;
+//}
 }
