@@ -17,13 +17,13 @@ public class ApiTempController {
 //    @Autowired
 //    private ApiGetDay apiGetDay;
     @GetMapping("api/last24")
-    @CrossOrigin("*")
+   // @CrossOrigin("*")
     public Iterable<ApiTempJoin> dataLast24(){
         return apiTempJoins.findByIdInvOrderLast24Temp();
     }
 
     @GetMapping("api/{day}")
-    @CrossOrigin("*")
+    //@CrossOrigin("*")
     public Iterable<ApiTempJoin> data1day(@PathVariable String day){
         return apiTempJoins.findByDay(day);
     }

@@ -1,4 +1,4 @@
-package fr.synergy.projet_THP.Services;
+package fr.synergy.projet_THP.services;
 
 import fr.synergy.projet_THP.entities.SensIntEntity;
 import fr.synergy.projet_THP.repositories.SensIntRepository;

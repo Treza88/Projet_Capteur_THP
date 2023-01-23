@@ -79,17 +79,17 @@
             <li><div class="container mt-3">
             </div>
             </li>
-            <li><a class="dropdown-item" href="#"><strong>Module ESP8266</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>BME280</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>DHT11</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>SHT31</strong></a></li>
+            <li><a class="dropdown-item" href="https://fr.wikipedia.org/wiki/ESP8266"><strong>Module ESP8266</strong></a></li>
+            <li><a class="dropdown-item" href="https://www.raspberryme.com/guide-du-capteur-bme280-avec-arduino-pression-temperature-humidite/"><strong>BME280</strong></a></li>
+            <li><a class="dropdown-item" href="https://www.carnetdumaker.net/articles/utiliser-un-capteur-de-temperature-et-dhumidite-dht11-dht22-avec-une-carte-arduino-genuino/"><strong>DHT11</strong></a></li>
+            <li><a class="dropdown-item" href="https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/"><strong>SHT31</strong></a></li>
           </ul>
         </div>
       </form>
   
       <form>
         <div class=" first btn_contact">
-          <a href="http://85.168.31.223:8080/login/">
+          <a href="http://85.168.31.223:8080/admin/">
           <button class=" " type="button">Admin</button>
         </a>
         </div>
@@ -111,18 +111,59 @@
 
 
 <div class="chartContainer">
+<div class="minmax">
   <canvas id="myChartTemp" ></canvas>
 </div>
+  <div class="maxmin1">
+  <label for="thp">Température extérieur Max:</label>
+  <div>
+  <input id="thp" type="text"  name="maxtempExt" value="10">
+  degré à <span id="maxHeurExt"></span>
+  </div>
+  <label for="thp">Température exterieur Min:</label>
+  <div>
+  <input id="thp"  type="text" name="mintempExt" value="8">
+  degré à <span id="minHeurExt"></span>
+  </div>
 
-<div id="container">
+</div>
+<div class="maxmin2">
+  <label for="thp">Température intérieur Max:</label>
+  <div>
+  <input id="thp" type="text"  name="maxtempInt" value="10">
+  degré à <span id="maxHeurInt"></span>
+</div>
+  <label for="thp">Température interieur Min:</label>
+  <div>
+  <input id="thp"  type="text" name="mintempInt" value="8">
+  degré à <span id="minHeurInt"></span>
+</div>
+</div>
+<div class="maxmin3">
+  <label for="thp">Température cave Max:</label>
+  <div>
+  <input id="thp" type="text"  name="maxtempCave" value="10">
+  degré à <span id="maxHeurCave"></span>
+</div>
+  <label for="thp">Température cave Min:</label>
+  <div>
+  <input id="thp"  type="text" name="mintempCave" value="8">
+  degré à <span id="minHeurCave"></span>
+</div>
+</div>
+</div>
+<div class="container1">
   <button id="btLast24">Last 24</button>
   <label>
-    Sélectionnr une date:
+    Sélectionner une date:  <span><button class="btn" onclick="decrement()">-</button></span>
     <input id="getPickerDate" 
     type="date" 
     name="oneDate"
     min="2022-10-19" />
   </label>
+      
+  <button class="btn" onclick="increment()">+</button>
+
 </div>
 
 </body>

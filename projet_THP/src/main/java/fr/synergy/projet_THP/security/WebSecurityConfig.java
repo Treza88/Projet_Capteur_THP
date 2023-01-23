@@ -1,4 +1,4 @@
-package fr.synergy.projet_THP.controlers.security;
+package fr.synergy.projet_THP.security;
 
 
 import org.springframework.context.annotation.Bean;
@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -19,23 +19,30 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
+    @Bean("securityFilterChain")
+    public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
 
-
-    public void configure (HttpSecurity http) throws Exception{
-
-        http.cors(Customizer.withDefaults()).authorizeHttpRequests((requests) -> requests
-                        .antMatchers("/admin", "/admin/index").permitAll()
-                        .anyRequest().authenticated()
-                );
-        http.cors(Customizer.withDefaults()).formLogin((form) -> form
-
-                        .loginPage("/login")
-                        .permitAll()
-                )
-                .logout((logout) -> logout.permitAll());
+        http.csrf().disable()
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
+                .authorizeHttpRequests()
+                .antMatchers("/api/**").permitAll()
+                .and()
+                .authorizeHttpRequests((requests) -> {requests
+                .antMatchers("/admin", "/admin/index").permitAll()
+                .anyRequest().authenticated();})
+                .formLogin((form) -> form
+                .loginPage("/login")
+                .permitAll())
+                .logout((logout) -> logout.permitAll())
+        ;
+        return http.build();
 
     }
+
+
+
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user =
@@ -47,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(user);
     }
-    @Bean
+    @Bean("corsConfigurationSource")
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedMethods(Arrays.asList("GET","POST"));
@@ -57,5 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
+
     }
+
 }

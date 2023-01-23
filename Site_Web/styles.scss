@@ -74,6 +74,7 @@ h1{
     word-wrap: break-word;
     margin-top: 50px;
     margin-left: 15%;
+    margin-bottom: 70px;
     font-weight: bolder;
 }
 .decalTitre{
@@ -92,18 +93,73 @@ h1{
     
 }
 .chartContainer{
-    display: block;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    width: 800px !important;
-    height: 400px !important;
+    display: grid; 
+    grid-template-columns: 0.25fr 1.2fr 1.2fr 1.2fr 0.9fr 0.25fr; 
+    grid-template-rows: 150px 150px 150px 100px; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    ". minmax minmax minmax maxmin1 ."
+    ". minmax minmax minmax maxmin2 ."
+    ". minmax minmax minmax maxmin3 ."
+    "container1 container1 container1 container1 container1 container1"; 
+    
+      width: 100%;
+    height: 400px;
 }
-#container{
-    display: inline-block;
-    position: relative;
+.minmax{
+    grid-area: minmax;
+   
+}
+.maxmin1{
+    grid-area: maxmin1;
+    width: 200px;
+    margin: 0px 0px;
+    text-align: center;
+    margin-left: 50px;
+    }
+.maxmin2{
+    grid-area: maxmin2;
+    width: 200px;
+    margin: 0px 0px;
+    text-align: center;
+    margin-left: 50px;
+    }
+.maxmin3{
+    grid-area: maxmin3;
+    width: 200px;
+    margin: 0px 0px;
+    text-align: center;
+    margin-left: 50px;
+   }
+   #thp{
+    width: 40px;
+    text-align: center;
+   }
+   #thp2{
+    width: 60px;
+    text-align: center;
+   }
+.container1{
+    grid-area: container1;
+    padding-top: 50px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+
+.btn {
+    width: 55px;
+    border-color: black;
+    border: 1px;
+    background-color: #ffffff;
+    border-radius: 27px;
+    text-decoration: none;
+    font-size: 30px;
+    scale: 0.5;
+    margin-top: -20px;
+    margin: -10px -10px;
 }
 
 

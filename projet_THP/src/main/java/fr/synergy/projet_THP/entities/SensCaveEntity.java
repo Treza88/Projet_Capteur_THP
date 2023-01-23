@@ -26,4 +26,5 @@ public class SensCaveEntity {
     @ManyToOne
     @JoinColumn(nullable = false,name = "id_lieu")
     private SensLieuEntity idLieu;
+
 }

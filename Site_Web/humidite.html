@@ -21,8 +21,8 @@
     <link href="styles.css" rel="stylesheet">
     <!--Script JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js" integrity="sha512-MC1YbhseV2uYKljGJb7icPOjzF2k6mihfApPyPhEAo3NsLUW0bpgtL4xYWK1B+1OuSrUkfOTfhxrRKCz/Jp3rQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="script.js"></script>
 </head>
 
@@ -78,10 +78,10 @@
             <li><div class="container mt-3">
             </div>
             </li>
-            <li><a class="dropdown-item" href="#"><strong>Module ESP8266</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>BME280</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>DHT11</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>SHT31</strong></a></li>
+            <li><a class="dropdown-item" href="https://fr.wikipedia.org/wiki/ESP8266"><strong>Module ESP8266</strong></a></li>
+            <li><a class="dropdown-item" href="https://www.raspberryme.com/guide-du-capteur-bme280-avec-arduino-pression-temperature-humidite/"><strong>BME280</strong></a></li>
+            <li><a class="dropdown-item" href="https://www.carnetdumaker.net/articles/utiliser-un-capteur-de-temperature-et-dhumidite-dht11-dht22-avec-une-carte-arduino-genuino/"><strong>DHT11</strong></a></li>
+            <li><a class="dropdown-item" href="https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/"><strong>SHT31</strong></a></li>
           </ul>
         </div>
       </form>
@@ -107,18 +107,61 @@
 
 
 <div class="chartContainer">
-  <canvas id="myChartTemp" ></canvas>
+  <div class="minmax">
+  <canvas id="myChartHumid" ></canvas>
+
+</div>
+<div class="maxmin1">
+<label for="thp">Humidité extérieur Max:</label>
+<div>
+<input id="thp" type="text"  name="maxhumidExt" value="10">
+% à <span id="maxHeurExt"></span>
+</div>
+<label for="thp">Humidité exterieur Min:</label>
+<div>
+<input id="thp"  type="text" name="minhumidExt" value="8">
+% à <span id="minHeurExt"></span>
 </div>
 
-<div id="container">
+</div>
+<div class="maxmin2">
+<label for="thp">Humidité intérieur Max:</label>
+<div>
+<input id="thp" type="text"  name="maxhumidInt" value="10">
+% à <span id="maxHeurInt"></span>
+</div>
+<label for="thp">Humidité interieur Min:</label>
+<div>
+<input id="thp"  type="text" name="minhumidInt" value="8">
+% à <span id="minHeurInt"></span>
+</div>
+</div>
+<div class="maxmin3">
+<label for="thp">Humidité cave Max:</label>
+<div>
+<input id="thp" type="text"  name="maxhumidCave" value="10">
+% à <span id="maxHeurCave"></span>
+</div>
+<label for="thp">Humidité cave Min:</label>
+<div>
+<input id="thp"  type="text" name="minhumidCave" value="8">
+% à <span id="minHeurCave"></span>
+</div>
+</div>
+</div>
+
+<div class="container1">
   <button id="btLast24">Last 24</button>
   <label>
-    Sélectionnr une date:
+    Sélectionner une date:  <span><button class="btn" onclick="decrement()">-</button></span>
     <input id="getPickerDate" 
     type="date" 
     name="oneDate"
     min="2022-10-19" />
   </label>
+      
+  <button class="btn" onclick="increment()">+</button>
+
 </div>
   
 </body>

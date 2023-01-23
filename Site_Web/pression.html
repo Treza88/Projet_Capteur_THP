@@ -78,10 +78,10 @@
             <li><div class="container mt-3">
             </div>
             </li>
-            <li><a class="dropdown-item" href="#"><strong>Module ESP8266</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>BME280</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>DHT11</strong></a></li>
-            <li><a class="dropdown-item" href="#"><strong>SHT31</strong></a></li>
+            <li><a class="dropdown-item" href="https://fr.wikipedia.org/wiki/ESP8266"><strong>Module ESP8266</strong></a></li>
+            <li><a class="dropdown-item" href="https://www.raspberryme.com/guide-du-capteur-bme280-avec-arduino-pression-temperature-humidite/"><strong>BME280</strong></a></li>
+            <li><a class="dropdown-item" href="https://www.carnetdumaker.net/articles/utiliser-un-capteur-de-temperature-et-dhumidite-dht11-dht22-avec-une-carte-arduino-genuino/"><strong>DHT11</strong></a></li>
+            <li><a class="dropdown-item" href="https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/"><strong>SHT31</strong></a></li>
           </ul>
         </div>
       </form>
@@ -105,19 +105,36 @@
 </header>
     
 <h1>Pression atmosphérique des dernières 24 heures</h1>
-
 <div class="chartContainer">
+  <div class="minmax">
   <canvas id="myChartPress" ></canvas>
 </div>
-<div id="container">
+<div class="maxmin1">
+<label for="thp2">Pression extérieur Max:</label>
+<div>
+<input id="thp2" type="text"  name="maxpressExt" value="10">
+hPa à <span id="maxHeurExt"></span>
+</div>
+<label for="thp2">Pression exterieur Min:</label>
+<div>
+<input id="thp2"  type="text" name="minpressExt" value="8">
+hPa à <span id="minHeurExt"></span>
+</div>
+</div>
+</div>
+
+<div class="container1">
   <button id="btLast24">Last 24</button>
   <label>
-    Sélectionnr une date:
+    Sélectionner une date:  <span><button class="btn" onclick="decrement()">-</button></span>
     <input id="getPickerDate" 
     type="date" 
     name="oneDate"
     min="2022-10-19" />
   </label>
+      
+  <button class="btn" onclick="increment()">+</button>
+
 </div>
 </body>
 </html>

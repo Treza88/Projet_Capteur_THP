@@ -1,6 +1,6 @@
 package fr.synergy.projet_THP.controlers.admin;
 
-import fr.synergy.projet_THP.Services.BackUserService;
+import fr.synergy.projet_THP.services.BackUserService;
 import fr.synergy.projet_THP.entities.BackUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

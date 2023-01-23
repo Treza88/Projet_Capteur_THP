@@ -1,11 +1,10 @@
-package fr.synergy.projet_THP.Services;
+package fr.synergy.projet_THP.services;
 
 import fr.synergy.projet_THP.entities.SensExtEntity;
 import fr.synergy.projet_THP.repositories.SensExtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.util.Optional;
 
 @Service

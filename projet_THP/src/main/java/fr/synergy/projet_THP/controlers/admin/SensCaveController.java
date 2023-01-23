@@ -1,6 +1,6 @@
 package fr.synergy.projet_THP.controlers.admin;
 
-import fr.synergy.projet_THP.Services.SensCaveService;
+import fr.synergy.projet_THP.services.SensCaveService;
 import fr.synergy.projet_THP.entities.SensCaveEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
