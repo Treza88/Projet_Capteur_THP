@@ -18,7 +18,7 @@ public class SensIntEntity {
     @Column(nullable = false,name = "temp_int")
     private float tempInt;
     @Column(nullable = false,name = "humid_int")
-    private float himidInt;
+    private float humidInt;
     @OneToOne
     @JoinColumn(nullable = false,name = "id_date")
     private SensDateEntity idDate;

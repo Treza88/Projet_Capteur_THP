@@ -19,7 +19,7 @@ public class SensExtEntity {
     @Column(nullable = false,name = "temp_ext")
     private float tempExt;
     @Column(nullable = false,name = "humid_ext")
-    private float himidExt;
+    private float humidExt;
     @Column(nullable = false,name = "press_ext")
     private float pressExt;
 

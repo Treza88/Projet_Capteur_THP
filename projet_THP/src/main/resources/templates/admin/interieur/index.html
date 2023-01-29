@@ -1,23 +1,20 @@
-<!--<table class="table table-hover" border="1" >-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th scope="col">ID</th>-->
-<!--        <th scope="col" class="col-1">Cover</th>-->
-<!--        <th scope="col">Humid</th>-->
-<!--        <th scope="col">Date</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr data-th-each="v : ${videos}">-->
-<!--        <td data-th-text="${v.name}"></td>-->
-<!--        <td><img class="img-thumbnail" data-th-src="|/files/${v.cover}|" alt=""-->
-<!--                 width="100"></td>-->
-<!--        <td data-th-text="${v.duration}"></td>-->
-<!--        <td data-th-text="${v.originCountry}"></td>-->
-<!--        <td ><a data-th-href="@{'/admin/videos/'+${v.id}}">detail</a> </td>-->
-<!--        &lt;!&ndash;<td ><a th:href="@{'/admin/videos/{id}(id=${u.id})}">detail</a> </td>&ndash;&gt;&lt;!&ndash; Idem ligne au dessus&ndash;&gt;-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-
 <h1>Interieur</h1>
+
+
+
+<table class="table table-hover" border="1" data-th-if="${int.size()>0}">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Temp</th>
+        <th scope="col">Humid</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="i : ${int}">
+        <td data-th-text="${i.idInt}"></td>
+        <td data-th-text="${i.tempInt}"></td>
+        <td data-th-text="${i.humidInt}"></td>
+    </tr>
+    </tbody>
+</table>

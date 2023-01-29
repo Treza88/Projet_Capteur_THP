@@ -1,11 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Detail de l'utlisateur</h1>
-<h4></h4>
-</body>
-</html>
+<h1>detail utilisateurs</h1>
+
+<div class="container d-flex">
+
+    <div class="col-1"></div>
+    <div class="col-7">
+        <div>
+
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>User Id</div>
+                <div data-th-text="${user.id}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>User Name</div>
+                <div data-th-text="${user.username}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Password</div>
+                <div data-th-text="${user.password}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Actif ou non</div>
+                <div data-th-text="${user.enabled}"></div>
+            </div>
+<!--            <div class="row-perso d-flex flex-wrap justify-content-between">-->
+<!--                <div>Role</div>-->
+<!--                <div  data-th-text="${roles}"></div>-->
+<!--            </div>-->
+<!--            !&#45;&#45;table>thead>tr>th*3^^tbody>tr>td*3 +tabulation pour valider&ndash;&gt;-->
+            <table>
+                <thead>
+                <tr>
+                <th>Role/s</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="r:${roles}">
+                    <td data-th-text="${r}"></td>
+                </tr>
+                </tbody>
+
+                </table>
+        </div>
+    </div>
+
+
+
+
+
+</div>

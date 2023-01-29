@@ -3,22 +3,25 @@
 <table class="table table-hover" border="1">
     <thead>
     <tr>
-        <th scope="col">Prénom</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Login</th>
-        <th scope="col">Mot de passe</th>
-        <th scope="col">Role</th>
-        <th scope="col">Mail</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Password</th>
+        <th scope="col">Actif</th>
+        <th scope="col">User Id</th>
+        <th scope="col">Role Id</th>
+        <th scope="col">Modification</th>
+
     </tr>
     </thead>
     <tbody>
-    <tr data-th-each="u : ${users}">
-        <td data-th-text="${u.firstName}"></td>
-        <td data-th-text="${u.lastName}"></td>
-        <td data-th-text="${u.login}"></td>
-        <td data-th-text="${u.password}"></td>
-        <td data-th-text="${u.role}"></td>
-        <td data-th-text="${u.mail}"></td>
+
+    <tr data-th-each="ur : ${userRole}" >
+        <td data-th-text="${ur.username}"></td>
+        <td data-th-text="${ur.password}"></td>
+        <td data-th-text="${ur.enabled}"></td>
+        <td data-th-text="${ur.id}"></td>
+        <td data-th-text="${ur.name}"></td>
+        <td ><a data-th-href="@{'/admin/users/'+${ur.id}}">Edit</a> </td>
+
 
     </tr>
     </tbody>

@@ -1,5 +1,6 @@
 package fr.synergy.projet_THP.services;
 
+import fr.synergy.projet_THP.entities.SensCaveEntity;
 import fr.synergy.projet_THP.entities.SensIntEntity;
 import fr.synergy.projet_THP.repositories.SensIntRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,4 +20,7 @@ public class SensIntService {
     public Iterable<SensIntEntity>findAll(){return sensIntRepository.findAll();}
 
     public Optional<SensIntEntity> findById(Long id){return  sensIntRepository.findById(id);}
+    public Iterable<SensIntEntity> findByIdInvOrderLast24() {
+        return sensIntRepository.findByIdInvOrderLast24();
+    }
 }

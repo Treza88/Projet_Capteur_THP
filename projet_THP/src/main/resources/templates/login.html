@@ -4,6 +4,11 @@
   <title>Spring Security Example </title>
 </head>
 <body>
+<div class="simple-login-container">
+<H1>Bienvenu sur la page d'authentification</H1>
+<h2>pour acceder au Back-end en tant que visiteur</h2>
+<h2>Veuillez vous loguer avec "user" et Mot de passe "user"</h2>
+  <div class="row">
 <div th:if="${param.error}">
   Invalid username and password.
 </div>
@@ -13,9 +18,11 @@
 
 
 <form th:action="@{/login}" method="post">
-  <div><label> User Name : <input type="text" name="username"/> </label></div>
-  <div><label> Password: <input type="password" name="password"/> </label></div>
-  <div><input type="submit" value="Sign In"/></div>
+  <div class="col-md-12 form-group"><label> User Name : <input type="text" name="username"/> </label></div>
+  <div class="col-md-12 form-group"><label> Password: <input type="password" name="password"/> </label></div>
+  <div class="col-md-12 form-group"><input type="submit" value="Sign In"/></div>
 </form>
+</div>
+</div>
 </body>
 </html>

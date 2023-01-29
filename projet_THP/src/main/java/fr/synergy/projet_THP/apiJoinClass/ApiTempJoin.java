@@ -47,6 +47,7 @@ public class ApiTempJoin {
         Query query = em.createNativeQuery(req);
         List<Object[]> all = query.getResultList();
         List<ApiTempJoin> apiTempJoins = new ArrayList<>();
+
         for (Object[] o : all) {
             ApiTempJoin t = new ApiTempJoin();
             t.setTempExt((Float) o[0]);

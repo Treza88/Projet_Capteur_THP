@@ -1,0 +1,11 @@
+{
+  "name": "writing-sass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch G:\System\Arduino\ESP8266\BME280_BD\Projet_Capteur_THP\projet_THP\src\main\resources\static\\styles.scss:G:\System\Arduino\ESP8266\BME280_BD\Projet_Capteur_THP\projet_THP\src\main\resources\static\\styles.css"
+  },
+  "author": "Hervé",
+  "license": "ISC"
+}

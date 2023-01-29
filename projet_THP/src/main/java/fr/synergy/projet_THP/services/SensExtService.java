@@ -1,5 +1,6 @@
 package fr.synergy.projet_THP.services;
 
+import fr.synergy.projet_THP.entities.SensCaveEntity;
 import fr.synergy.projet_THP.entities.SensExtEntity;
 import fr.synergy.projet_THP.repositories.SensExtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class SensExtService {
     public Optional<SensExtEntity> findById(Long id){return sensExtRepository.findById(id);}
 
     public void deleteById(Long id){sensExtRepository.deleteById(id);}
+    public Iterable<SensExtEntity> findByIdInvOrderLast24() {
+        return sensExtRepository.findByIdInvOrderLast24();
+    }
 
 
 }

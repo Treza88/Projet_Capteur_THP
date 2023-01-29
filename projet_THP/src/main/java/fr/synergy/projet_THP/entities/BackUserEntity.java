@@ -5,46 +5,44 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Calendar;
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="userAdmin")
+@Table(name="user_admin")
 public class BackUserEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_user_admin")
-    private Long idUserAdmin;
 
-    @Column(name="first_name",nullable = false)
-    private String firstName;
 
-    @Column(name="last_name",nullable = false)
-    private String lastName;
+        @Id
+        @Column(name = "user_id")
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Column(name="login",nullable = false)
-private String login;
+        private String username;
+        private String password;
+        private boolean enabled;
 
-@Column(nullable = false)
-private String password;
+        @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+        @JoinTable(
+                name = "users_roles",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id")
+        )
+        private Set<RoleEntity> roles = new HashSet<>();
 
-@Column(nullable = false)
-private String role;
+        public Long getId() {
+                return id;
+        }
 
-@Column(nullable = false)
-private String mail;
-
-@Temporal(TemporalType.TIMESTAMP)
-@Column(nullable = false,columnDefinition = "TIMESTAMP")
-private Calendar date;
-
-    public BackUserEntity(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
+        public BackUserEntity(Long id, String username, String password, boolean enabled) {
+                this.id = id;
+                this.username = username;
+                this.password = password;
+                this.enabled = enabled;
+        }
 }

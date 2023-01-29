@@ -16,6 +16,8 @@ public class SensExtController {
 
     @GetMapping("")
     public String adminExt(Model model){
+        model.addAttribute("ext",sensExtService.findByIdInvOrderLast24());
+        model.addAttribute("page", "exterieur/index.html");
         return "admin/index.html";
     }
 

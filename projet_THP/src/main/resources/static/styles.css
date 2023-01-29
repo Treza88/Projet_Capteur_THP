@@ -112,6 +112,18 @@ h1 {
   margin-right: auto;
 }
 
+.validation {
+  margin-top: 50px;
+}
+
+.center {
+  display: float;
+  padding-left: auto;
+  padding-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*responsive*/
 @media screen and (max-width: 1280px) {
   nav button {
@@ -137,4 +149,6 @@ h1 {
   nav button {
     font-size: 12px;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */
