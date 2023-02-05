@@ -59,7 +59,7 @@ nav #en-cours {
 .logo {
   /* position: absolute;
    z-index: 10;*/
-  margin-top: -70px;
+  margin-top: -40px;
   margin-left: 20px;
 }
 
@@ -75,8 +75,13 @@ body {
 h1 {
   word-wrap: break-word;
   margin-top: 50px;
-  margin-left: 15%;
+  text-align: center;
   font-weight: bolder;
+}
+
+h2 {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .decalTitre {
@@ -117,11 +122,42 @@ h1 {
 }
 
 .center {
-  display: float;
+  display: block;
   padding-left: auto;
   padding-right: auto;
   margin-left: auto;
   margin-right: auto;
+}
+
+#retour {
+  display: flex;
+  width: 100%;
+  padding-top: 50px;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.dropdown:hover .dropdown-item {
+  display: block;
+}
+
+#btn1 {
+  display: flex;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-login {
+  width: 100%;
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.form-group {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /*responsive*/

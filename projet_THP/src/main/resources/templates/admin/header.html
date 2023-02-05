@@ -5,8 +5,8 @@
 
     <form>
         <div class="btn_contact">
-            <a href="index">
-                <button id="en-cours" class=" " type="button">Accueil</button>
+            <a href="/admin/index">
+                <button  class=" " type="button" value="Accueil">Accueil</button>
             </a>
         </div>
     </form>
@@ -14,7 +14,7 @@
     <form>
         <div class=" btn_contact">
             <a href="/admin/exterieur">
-                <button class=" " type="button">Exterieur</button>
+                <button class=" " type="button" value="Exterieur">Exterieur</button>
             </a>
         </div>
     </form>
@@ -22,7 +22,7 @@
     <form>
         <div class=" btn_contact">
             <a href="/admin/interieur">
-                <button class=" " type="button">Interieur</button>
+                <button class=" " type="button" value="Interieur">Interieur</button>
             </a>
         </div>
     </form>
@@ -32,34 +32,29 @@
     <form>
         <div class="btn_contact">
             <a href="/admin/cave">
-                <button class=" " type="button">Cave</button>
+                <button class=" " type="button" value="Cave">Cave</button>
             </a>
         </div>
     </form>
 
     <form >
         <div class="dropdown">
-            <button type="button" class="  dropdown-toggle" data-bs-toggle="dropdown">
+            <button  class="dropdown-toggle" type="btn" data-bs-toggle="dropdown" data-bs-target="#dropdown2">
                 Users
             </button>
-            <ul class="dropdown-menu">
-                <li><div class="container mt-3">
-                </div>
-                </li>
+
+            <ul id=dropdown2 class="dropdown-menu">
                 <li><a class="dropdown-item" href="/admin/users"><strong>Users list</strong></a></li>
                 <li><a class="dropdown-item" href="/admin/users/add"><strong>User add</strong></a></li>
             </ul>
+
         </div>
     </form>
-<!--    <form data-th-action="@{/logout}" method="post">-->
-<!--        <div class=" first btn_contact">-->
-<!--        <input type="text" value="Sign Out"/>-->
-<!--        </div>-->
-<!--    </form>-->
+
     <form id="form1" data-th-action="@{/logout}" method="post">
         <div class=" first btn_contact">
 
-                <button form="form1" data-th-formaction="@{/logout}" data-th-formmethod="post" >Déconnection</button>
+                <button form="form1" data-th-formaction="@{/logout}" data-th-formmethod="post" value="Logout">Déconnection</button>
 
         </div>
     </form>

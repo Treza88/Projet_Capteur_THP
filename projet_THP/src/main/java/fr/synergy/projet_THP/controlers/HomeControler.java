@@ -17,12 +17,18 @@ public class HomeControler {
 //}
 @GetMapping({"/","admin", "admin/index"})
     public String admin(){
-    return "admin/index.html";
+    return "index.html";
 }
 
     @GetMapping("/login")
     public String index(Model model){
-    return "login";}
+    return "login.html";}
+    @GetMapping("403")
+    public String error_403(){
+        return "403";
+    }
 
+    @GetMapping("/logout")
+    public String logout(){return "login.html";}
 
 }

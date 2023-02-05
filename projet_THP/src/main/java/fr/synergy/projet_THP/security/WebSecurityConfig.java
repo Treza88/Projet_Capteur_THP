@@ -8,6 +8,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -43,19 +44,24 @@ public class WebSecurityConfig {
 
         return authProvider;
     }
-
+//    @Bean
+//    public void configure(WebSecurity web) throws Exception {
+//        web
+//                .ignoring()
+//                .antMatchers("/resources/static/**", "/resources/templates/**");
+//    }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
     @Bean("securityFilterChain")
     public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
-
+        
         http.csrf().disable()
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/api/**").permitAll()
+                .antMatchers("/","/api/**","/css/**").permitAll()
                 .and()
                 .authorizeHttpRequests((requests) -> {requests
                 .antMatchers("/admin", "/admin/index").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
@@ -63,10 +69,12 @@ public class WebSecurityConfig {
                 .anyRequest().authenticated();})
                 .formLogin((form) -> form
                 .loginPage("/login")
+                .defaultSuccessUrl("/admin/index",true)
                 .permitAll())
-                .logout((logout) -> logout.permitAll())
-                .exceptionHandling().accessDeniedPage("/403")
-        ;
+                .logout()
+                .logoutSuccessUrl("http://projet-thp.trv-synergy.fr/temperature.html")
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
         return http.build();
 
     }
