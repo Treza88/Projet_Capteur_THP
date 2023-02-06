@@ -10,7 +10,19 @@ day = "";
 tabTHP = "";
 nameInput = "";
 reverse = 0;
-
+// function de confirmation de quitter le site pour un autre
+function ConfirmMessage() {
+  if (
+    confirm(
+      "Vous allez être rediriger sur un autre site dans un nouvel onglet."
+    )
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+// incrementa
 function increment() {
   day = $("#getPickerDate").val();
   day1 = new Date(day);
