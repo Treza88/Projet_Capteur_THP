@@ -1,28 +1,29 @@
 <h1>detail cave</h1>
 
-<div class="container d-flex">
 
 
 
-            <div class="row-perso d-flex flex-wrap justify-content-between">
-                <div>Id</div>
-                <div data-th-text="${c.idCave}"></div>
-            </div>
-            <div class="row-perso d-flex flex-wrap justify-content-between">
-                <div>Temp</div>
-                <div data-th-text="${c.tempCave}"></div>
-            </div>
-            <div class="row-perso d-flex flex-wrap justify-content-between">
-                <div>Humid</div>
-                <div data-th-text="${c.humidCave}"></div>
-            </div>
-<!--            <div class="row-perso d-flex flex-wrap justify-content-between">-->
-<!--                <div>Id date</div>-->
-<!--                <div  data-th-text="${c.idDate}"></div>-->
-<!--            </div>-->
-<!--            <div class="row-perso d-flex flex-wrap justify-content-between">-->
-<!--                <div>Id Lieu</div>-->
-<!--                <div data-th-text="${c.idLieu}"></div>-->
-<!--            </div>-->
 
-        </div>
+
+    <div class="mb-3">
+        <label data-th-for="c.idCave" class="form-label">Id</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{c.idCave}">
+    </div>
+    <div class="mb-3">
+        <label data-th-for="c.tempCave" class="form-label">Température</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{c.tempCave}">
+    </div>
+    <div class="mb-3">
+        <label data-th-for="c.humidCave" class="form-label">Humidité</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{c.humidCave}">
+    </div>
+
+    <div class="validation mb-3">
+        <button class="mb-3 form-control form-control-lg btn btn-primary "type="submit">Valider</button>
+        <button class="mb-3 form-control form-control-lg btn btn-warning" type="submit">Effacer</button>
+    </div>
+
+

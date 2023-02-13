@@ -9,6 +9,7 @@
         <th scope="col">ID</th>
         <th scope="col">Temp</th>
         <th scope="col">Humid</th>
+        <th scope="col" data-sec-authorize="hasAuthority('ADMIN')">Modification</th>
     </tr>
     </thead>
     <tbody>
@@ -16,6 +17,9 @@
         <td data-th-text="${c.idCave}"></td>
         <td data-th-text="${c.tempCave}"></td>
         <td data-th-text="${c.humidCave}"></td>
+        <td data-sec-authorize="hasAuthority('ADMIN')">
+            <a data-th-href="@{'/admin/cave/'+${c.idCave}}">Edit</a>
+        </td>
     </tr>
     </tbody>
 </table>

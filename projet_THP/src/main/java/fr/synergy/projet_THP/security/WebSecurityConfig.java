@@ -65,7 +65,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests((requests) -> {requests
                 .antMatchers("/admin", "/admin/index").hasAnyAuthority("USER", "EDITOR", "ADMIN")
-                .antMatchers("/admin/users/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/admin/users/**","/admin/exterieur/*","/admin/interieur/*","/admin/cave/*").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated();})
                 .formLogin((form) -> form
                 .loginPage("/login")
