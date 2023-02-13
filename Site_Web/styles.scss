@@ -5,17 +5,21 @@ $primaryColor: #978ee9;
 html{
     width: 80%;
     margin:auto;
-    
-
+    background-color: #cac7e6;
+   
 }
-
+#decalHeader{
+    
+height: 10px;
+}
 header{
+    //padding-top: 10px;
     background-color: #ffffff;
     border : 4px solid rgb(41, 9, 155); 
 }
 /*Barre de menu*/
 nav .first{
-    margin-right: 00px;
+   // margin-right: 00px;
 }
 nav button{
     margin-left: 10px;
@@ -58,7 +62,7 @@ nav #en-cours{
     
    /* position: absolute;
     z-index: 10;*/
-    margin-top: -50px;
+    margin-top: -70px;
     margin-left: 20px;
 }
 .logo1 img{
@@ -66,10 +70,17 @@ nav #en-cours{
     border : 15px solid white;
 }
 body{
-    
-    
-    background-color: #cac7e6;
+    position: relative;
+    background-image: url('images/fond1.JPG');
+    //margin-top: -50px;
+    margin-bottom: -100px;
+    background-size: cover;
+    min-height: 100vh;
+    //background-image: url();
+    height: 100%;
+    //background-color: #cac7e6;
 }
+
 h1{
     word-wrap: break-word;
     margin-top: 50px;
@@ -83,6 +94,10 @@ h1{
 
 .sousTitre{
     margin-top: 100px;
+}
+#sousTitre2{
+    margin-top: 100px;
+    margin-left: 50px;
 }
 .liste {
     margin-top: 30px;

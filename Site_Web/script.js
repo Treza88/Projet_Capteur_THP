@@ -22,7 +22,7 @@ function ConfirmMessage() {
     return false;
   }
 }
-// incrementa
+// incrementation du date picker avec le bouton +
 function increment() {
   day = $("#getPickerDate").val();
   day1 = new Date(day);
@@ -33,6 +33,7 @@ function increment() {
   localStorage.setItem("getDay", tomorrow);
   window.location.reload(true);
 }
+// decrementation du date picker avec le bouton -
 function decrement() {
   day = $("#getPickerDate").val();
   day1 = new Date(day);
@@ -69,11 +70,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function json24() {
     day = $("#getPickerDate").val();
+    var h1 = document.getElementById("changeH1");
     if (day == "") {
       day = "last24";
       reverse = 1;
+      h1.innerHTML = "des dernières 24 heures";
     } else {
       reverse = 0;
+      changeH1();
     }
     console.log(day);
 
@@ -254,6 +258,31 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   json24();
+
+  function changeH1() {
+    var h1 = document.getElementById("changeH1");
+    date = new Date(day);
+    jour = date.getDate();
+    year = "20" + (date.getYear() - 100);
+    const month = [
+      "Janvier",
+      "Fevrier",
+      "Mas",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "August",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Decembre",
+    ];
+
+    let name = month[date.getMonth()];
+    h1.innerHTML = "du " + jour + " " + name + " " + year;
+    console.log(date);
+      }
 });
 
 //Actualisation de la page toutes les heures et 1 minute

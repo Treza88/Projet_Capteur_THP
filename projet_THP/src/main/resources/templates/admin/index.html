@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,13 +21,13 @@
 
 <body>
 
-<div class="container">
+<div class="container" >
     <header>
         <!--Menu-->
 
-        <div data-th-replace="~{/admin/header :: navigation}"></div>
+        <div data-th-replace="~{admin/header :: navigation}"></div>
         <div class="logo">
-            <a class="logo1" href="/admin/index"><img src="../static/images/logo_trv.png"
+            <a class="logo1" href="/admin/index"><img src="/images/logo_trv.png"
                                                     data-th-src="@{/images/logo_trv.png}"/></a>
 
 

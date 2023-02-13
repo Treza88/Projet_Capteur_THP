@@ -2,6 +2,11 @@
 html {
   width: 80%;
   margin: auto;
+  background-color: #cac7e6;
+}
+
+#decalHeader {
+  height: 10px;
 }
 
 header {
@@ -10,10 +15,6 @@ header {
 }
 
 /*Barre de menu*/
-nav .first {
-  margin-right: 0px;
-}
-
 nav button {
   margin-left: 10px;
   margin-right: 10px;
@@ -59,7 +60,7 @@ nav #en-cours {
 .logo {
   /* position: absolute;
    z-index: 10;*/
-  margin-top: -50px;
+  margin-top: -70px;
   margin-left: 20px;
 }
 
@@ -69,7 +70,12 @@ nav #en-cours {
 }
 
 body {
-  background-color: #cac7e6;
+  position: relative;
+  background-image: url("images/fond1.JPG");
+  margin-bottom: -100px;
+  background-size: cover;
+  min-height: 100vh;
+  height: 100%;
 }
 
 h1 {
@@ -86,6 +92,11 @@ h1 {
 
 .sousTitre {
   margin-top: 100px;
+}
+
+#sousTitre2 {
+  margin-top: 100px;
+  margin-left: 50px;
 }
 
 .liste {

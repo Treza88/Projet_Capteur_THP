@@ -1,0 +1,32 @@
+<h1>detail Exterieur</h1>
+
+<!--<form action="'/admin/exterieur/'+${id}" method="post" data-th-object="${sensExtEntity}" enctype="multipart/form-data">-->
+
+
+
+            <div class="mb-3">
+                <label data-th-for="ext.idExt" class="form-label">Id</label>
+                <input class="form-control form-control-lg alert alert-secondary" type="text"
+                       data-th-field="*{ext.idExt}">
+            </div>
+            <div class="mb-3">
+                <label data-th-for="ext.tempExt" class="form-label">Température</label>
+                <input class="form-control form-control-lg alert alert-secondary" type="text"
+                       data-th-field="*{ext.tempExt}">
+            </div>
+            <div class="mb-3">
+                <label data-th-for="ext.humidExt" class="form-label">Humidité</label>
+                <input class="form-control form-control-lg alert alert-secondary" type="text"
+                       data-th-field="*{ext.humidExt}">
+            </div>
+    <div class="mb-3">
+        <label data-th-for="ext.pressExt" class="form-label">Pression</label>
+        <input class="form-control form-control-lg alert alert-secondary" type="text"
+               data-th-field="*{ext.pressExt}">
+    </div>
+    <div class="validation mb-3">
+        <button class="mb-3 form-control form-control-lg btn btn-primary "type="submit">Valider</button>
+        <button class="mb-3 form-control form-control-lg btn btn-warning" type="submit">Effacer</button>
+    </div>
+
+<!--        </form>-->
