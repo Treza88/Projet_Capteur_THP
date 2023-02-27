@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     console.log(day);
 
-    urlGet = "http://85.168.31.223:8080/api/" + day;
+    urlGet = "http://85.168.31.223:8082/api/" + day;
     console.log(urlGet);
     const response = await fetch(urlGet);
 
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let name = month[date.getMonth()];
     h1.innerHTML = "du " + jour + " " + name + " " + year;
     console.log(date);
-      }
+  }
 });
 
 //Actualisation de la page toutes les heures et 1 minute

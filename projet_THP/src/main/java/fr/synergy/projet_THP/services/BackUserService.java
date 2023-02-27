@@ -18,4 +18,6 @@ public class BackUserService {
     public BackUserEntity save(BackUserEntity userAdmin){return backUserRepository.save(userAdmin);}
 
     public Optional<BackUserEntity> findById(Long id){return backUserRepository.findById(id);}
+
+    public void  deleteById(Long id){backUserRepository.deleteById(id);}
 }

@@ -13,6 +13,13 @@
         <span data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}">Password Error</span>
     </div>
     <div class="mb-3">
+        <label data-th-for="verifPassword" class="form-label"> Nom</label>
+        <input class="form-control form-control-lg" type="password"
+               data-th-field="*{verifPassword}"
+               placeholder="password">
+        <span data-th-if="${#fields.hasErrors('verifPassword')}" data-th-errors="*{verifPassword}">Password Error</span>
+    </div>
+    <div class="mb-3">
         <label data-th-for="enabled" class="form-label">User actif ou non</label>
         <input class="form-control form-control-lg alert alert-secondary" type="text"
                data-th-field="*{enabled}">

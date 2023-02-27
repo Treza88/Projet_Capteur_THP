@@ -25,6 +25,8 @@ public class BackUserEntity {
 
         private String username;
         private String password;
+
+        private String verifPassword;
         private boolean enabled;
 
         @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

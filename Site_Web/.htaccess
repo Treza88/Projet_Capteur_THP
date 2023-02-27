@@ -1,3 +1,145 @@
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-</IfModule>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pression</title>
+    <!-- Bootstrap5-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link href="bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JS Jquery Jqueryui-->
+    
+    
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <!-- CSS-->
+    <link href="styles.css" rel="stylesheet">
+    <!--Script JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js" integrity="sha512-MC1YbhseV2uYKljGJb7icPOjzF2k6mihfApPyPhEAo3NsLUW0bpgtL4xYWK1B+1OuSrUkfOTfhxrRKCz/Jp3rQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+  <div id="decalHeader"> </div>
+  <div class="container">
+  <header>
+    <!--Menu-->
+<div class="azer">
+  <nav class="navbar  ">
+    <div class="">
+    </div>
+  
+
+  <ul style="list-style-type:none; display:inline-block;">
+    <li class="btn_contact">
+      <div id="logo">
+        <a id="logo1" href="index.html"><img src="images/logo_trv.png"/></a>
+        
+       
+      </div>
+
+    </li>
+    <li class="btn_contact">
+      <a href="index.html">
+      <button class=" " type="button">Accueil</button>
+    </a>
+  </li>
+  
+
+    
+      <li class=" btn_contact">
+        <a href="temperature.html">
+        <button class=" " type="button">Température <br>report</button>
+      </a>
+    </li>
+    
+
+    
+      <li class=" btn_contact">
+      <a href="humidite.html">
+        <button class=" " type="button">Humidité <br>report</button>
+      </a>
+    </li>
+    
+
+   
+
+    
+      <li class="btn_contact">
+        <a href="pression.html">
+        <button id="en-cours" class=" " type="button">Pression <br>report</button>
+        </a>
+      </li>
+    
+
+    
+      <li class="dropdown">
+        <button type="button" class="  dropdown-toggle" data-bs-toggle="dropdown">
+          Matériel d'acquisition<br>de données
+        </button>
+        <ul class="dropdown-menu">
+          
+          <li><a class="dropdown-item" href="http://tvaira.free.fr/esp8266/nodemcu-lolin-esp8266.html" onclick="return ConfirmMessage();" target="_blank"><strong>Module NodeMCU  ESP8266</strong></a></li>
+          <li><a class="dropdown-item" href="https://www.raspberryme.com/guide-du-capteur-bme280-avec-arduino-pression-temperature-humidite/" onclick="return ConfirmMessage();" target="_blank"><strong>BME280</strong></a></li>
+          <li><a class="dropdown-item" href="https://tutoduino.fr/debuter/capteur-temperature/#le-capteur-dht11 onclick="return ConfirmMessage();" target="_blank""><strong>DHT11</strong></a></li>
+          <li><a class="dropdown-item" href="https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/" onclick="return ConfirmMessage();" target="_blank"><strong>SHT31</strong></a></li>
+        </ul>
+      </li>
+    
+
+    
+      <li class=" first btn_contact">
+        <a href="http://85.168.31.223:8082/admin/">
+        <button class=" " type="button">Admin</button>
+      </a>
+    </li>
+    
+
+  </nav>
+  </div>
+  
+</header>
+    
+<h1>Pression atmosphérique <span id="changeH1">des dernières 24 heures</span></h1>
+<div class="chartContainer">
+  <div class="minmax">
+  <canvas id="myChartPress" ></canvas>
+</div>
+<div class="maxmin1">
+<label for="thp2">Pression extérieur Max:</label>
+<div>
+<input id="thp2" type="text"  name="maxpressExt" value="10">
+hPa à <span id="maxHeurExt"></span>
+</div>
+<label for="thp2">Pression exterieur Min:</label>
+<div>
+<input id="thp2"  type="text" name="minpressExt" value="8">
+hPa à <span id="minHeurExt"></span>
+</div>
+</div>
+</div>
+
+<div class="container1">
+  <button id="btLast24">Last 24</button>
+  <label>
+    Sélectionner une date:  <span><button class="btn" onclick="decrement()">-</button></span>
+    <input id="getPickerDate" 
+    type="date" 
+    name="oneDate"
+    min="2022-10-19" />
+  </label>
+      
+  <button class="btn" onclick="increment()">+</button>
+</div>
+</div>
+</body>
+</html>
+
+

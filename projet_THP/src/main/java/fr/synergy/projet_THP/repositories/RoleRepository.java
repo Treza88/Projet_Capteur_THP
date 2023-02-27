@@ -13,11 +13,13 @@ import javax.persistence.Query;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 //@Component
 @Repository
 public interface RoleRepository extends CrudRepository<RoleEntity, Long> {
 
-
+Optional<RoleEntity> findByName(String name);
 
 
     }

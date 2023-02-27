@@ -20,7 +20,9 @@
         <td data-th-text="${ur.enabled}"></td>
         <td data-th-text="${ur.id}"></td>
         <td data-th-text="${ur.name}"></td>
-        <td ><a data-th-href="@{'/admin/users/'+${ur.id}}">Edit</a> </td>
+        <td ><a data-th-href="@{'/admin/users/'+${ur.id}}" <i class="bi bi-pencil-square"
+                                                              style="font-size: 1.5rem;"></i></a> <a data-th-href="@{'/admin/users/'+${ur.id}+'/delete'}" <i class="bi bi-trash-fill"
+                                                                                                                            style="font-size: 1.5rem;">></a></td>
 
 
     </tr>

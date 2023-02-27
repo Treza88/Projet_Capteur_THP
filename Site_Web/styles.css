@@ -3,79 +3,23 @@ html {
   width: 80%;
   margin: auto;
   background-color: #cac7e6;
-}
-
-#decalHeader {
-  height: 10px;
+  scroll-behavior: smooth;
 }
 
 header {
   background-color: #ffffff;
+  padding-top: 10px;
+  margin-top: 0px;
   border: 4px solid rgb(41, 9, 155);
-}
-
-/*Barre de menu*/
-nav button {
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: white;
-  border-style: none;
-  font-weight: bold;
-  font-size: larger;
-  /*white-space: nowrap;*/
-}
-
-nav button:focus, nav button:hover {
-  background-color: none;
-  color: #978ee9;
-  border-color: none;
-  border-style: none;
-}
-
-.nav-link, .navbar-brand {
-  color: black !important;
-}
-
-nav li {
-  font-size: 18px;
-  border-style: none;
-}
-
-.dropdown-item {
-  background-color: white;
-}
-
-.dropdown-item:focus, .dropdown-item:hover {
-  background-color: none;
-  color: #978ee9;
-  border-color: none;
-  border-style: none;
-}
-
-nav #en-cours {
-  color: #978ee9;
-}
-
-/*Image Logo Bandeau supérieur*/
-.logo {
-  /* position: absolute;
-   z-index: 10;*/
-  margin-top: -70px;
-  margin-left: 20px;
-}
-
-.logo1 img {
-  width: 30%;
-  border: 15px solid white;
+  margin: auto;
+  width: 95%;
 }
 
 body {
   position: relative;
   background-image: url("images/fond1.JPG");
-  margin-bottom: -100px;
   background-size: cover;
   min-height: 100vh;
-  height: 100%;
 }
 
 h1 {
@@ -84,10 +28,6 @@ h1 {
   margin-left: 15%;
   margin-bottom: 70px;
   font-weight: bolder;
-}
-
-.decalTitre {
-  margin-left: 35%;
 }
 
 .sousTitre {
@@ -106,6 +46,63 @@ h1 {
 
 .liste li {
   margin-top: 15px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav li {
+  display: inline-block;
+  text-align: center;
+  border-style: none;
+  margin-right: 10px;
+  vertical-align: top;
+}
+
+nav a {
+  display: block;
+  color: black;
+  font-weight: bold;
+  font-size: larger;
+  text-decoration: none;
+}
+
+nav a:focus, a:hover {
+  color: #978ee9;
+  text-decoration: none;
+}
+
+nav button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.1em;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.dropdown-item {
+  background-color: white;
+  text-align: left;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: none;
+  color: #978ee9;
+  border-color: none;
+  border-style: none;
+}
+
+nav #en-cours {
+  color: #978ee9;
+}
+
+/*Image Logo Bandeau supérieur*/
+#logo1 img {
+  width: 250px;
+  border: none;
+  padding-left: -50px;
 }
 
 .chartContainer {
@@ -177,29 +174,21 @@ h1 {
   margin: -10px -10px;
 }
 
-/*responsive*/
-@media screen and (max-width: 1280px) {
-  nav button {
-    font-size: 12px;
+@media screen and (max-width: 1550px) {
+  html {
+    width: 100%;
   }
 }
-@media screen and (max-width: 1060px) {
-  nav button {
-    font-size: 9px;
+@media screen and (max-width: 780px) {
+  html {
+    width: 100%;
   }
-  .logo {
-    /* position: absolute;
-     z-index: 10;*/
-    margin-top: 150px;
-    margin-left: 20px;
+  nav ul {
+    height: 420px;
   }
-  .logo1 img {
-    width: 25%;
-    border: 15px solid white;
+  nav li {
+    display: block;
+    text-align: center;
   }
 }
-@media screen and (max-width: 900px) {
-  nav button {
-    font-size: 12px;
-  }
-}/*# sourceMappingURL=styles.css.map */
+/*responsive*//*# sourceMappingURL=styles.css.map */

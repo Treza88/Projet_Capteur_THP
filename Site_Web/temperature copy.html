@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humidité</title>
+    <title>Température</title>
     <!-- Bootstrap5-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link href="bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
+    
     <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- JS Jquery Jqueryui-->
-    
     
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -21,43 +21,44 @@
     <link href="styles.css" rel="stylesheet">
     <!--Script JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.min.js" integrity="sha512-MC1YbhseV2uYKljGJb7icPOjzF2k6mihfApPyPhEAo3NsLUW0bpgtL4xYWK1B+1OuSrUkfOTfhxrRKCz/Jp3rQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    
 </head>
 
 <body>
-  <div id="decalHeader"> </div>
+  
   <div class="container">
   <header>
     <!--Menu-->
-<div class="azer">
-  <nav class="navbar">
-    <ul style="list-style-type:none; display:inline-block;">
-      <li class="btn_contact">
+
+  <nav>
+    <ul>
+      <li>
           <a id="logo1" href="index.html"><img src="images/logo_trv.png"/></a>
       </li>
-      <li class="btn_contact">
-        <button><a href="index.html">
+      <li>
+        <a href="index.html">
         Accueil
-      </a></button>
+      </a>
     </li>  
-        <li class="btn_contact">
-          <button><a href="temperature.html">
+        <li>
+          <a id="en-cours" href="temperature.html">
           Température<br />report
-        </a></button>
+        </a>
       </li>
-        <li class="btn_contact">
-          <button><a id="en-cours" href="humidite.html">
+        <li>
+         <a href="humidite.html">
           Humidité<br />report
-        </a></button>
+        </a>
       </li>
-        <li class="btn_contact">
-          <button><a href="pression.html">
+        <li>
+          <a href="pression.html">
          Pression<br />report
-          </a></button>
+          </a>
         </li>
-        <li class="btn_contact dropdown">
+        <li class="dropdown">
           <button class="dropdown-toggle" data-bs-toggle="dropdown"><a href="">
             Matériel d'acquisition<br>de données
           </a></button>
@@ -68,63 +69,64 @@
             <li><a class="dropdown-item" href="https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/" onclick="return ConfirmMessage();" target="_blank"><strong>SHT31</strong></a></li>
           </ul>
         </li>
-        <li class="first btn_contact">
-          <button><a href="http://85.168.31.223:8082/admin/">
+        <li>
+          <a href="http://85.168.31.223:8082/admin/">
           Admin
-        </a></button>
+        </a>
       </li>
     </nav>
-  </div>
+  
   
 
 </header>
-<h1>Humidité <span id="changeH1">des dernières 24 heures</span></h1>
+    <h1>Température <span id="changeH1">des dernières 24 heures</span></h1>
+
+
+
 
 
 <div class="chartContainer">
-  <div class="minmax">
-  <canvas id="myChartHumid" ></canvas>
-
+<div class="minmax">
+  <canvas id="myChartTemp" ></canvas>
 </div>
-<div class="maxmin1">
-<label for="thp">Humidité extérieur Max:</label>
-<div>
-<input id="thp" type="text"  name="maxhumidExt" value="10">
-% à <span id="maxHeurExt"></span>
-</div>
-<label for="thp">Humidité exterieur Min:</label>
-<div>
-<input id="thp"  type="text" name="minhumidExt" value="8">
-% à <span id="minHeurExt"></span>
-</div>
+  <div class="maxmin1">
+  <label for="thp">Température extérieur Max:</label>
+  <div>
+  <input id="thp" type="text"  name="maxtempExt" value="10">
+  degré à <span id="maxHeurExt"></span>
+  </div>
+  <label for="thp">Température exterieur Min:</label>
+  <div>
+  <input id="thp"  type="text" name="mintempExt" value="8">
+  degré à <span id="minHeurExt"></span>
+  </div>
 
 </div>
 <div class="maxmin2">
-<label for="thp">Humidité intérieur Max:</label>
-<div>
-<input id="thp" type="text"  name="maxhumidInt" value="10">
-% à <span id="maxHeurInt"></span>
+  <label for="thp">Température intérieur Max:</label>
+  <div>
+  <input id="thp" type="text"  name="maxtempInt" value="10">
+  degré à <span id="maxHeurInt"></span>
 </div>
-<label for="thp">Humidité interieur Min:</label>
-<div>
-<input id="thp"  type="text" name="minhumidInt" value="8">
-% à <span id="minHeurInt"></span>
+  <label for="thp">Température interieur Min:</label>
+  <div>
+  <input id="thp"  type="text" name="mintempInt" value="8">
+  degré à <span id="minHeurInt"></span>
 </div>
 </div>
 <div class="maxmin3">
-<label for="thp">Humidité cave Max:</label>
-<div>
-<input id="thp" type="text"  name="maxhumidCave" value="10">
-% à <span id="maxHeurCave"></span>
+  <label for="thp">Température cave Max:</label>
+  <div>
+  <input id="thp" type="text"  name="maxtempCave" value="10">
+  degré à <span id="maxHeurCave"></span>
 </div>
-<label for="thp">Humidité cave Min:</label>
-<div>
-<input id="thp"  type="text" name="minhumidCave" value="8">
-% à <span id="minHeurCave"></span>
+  <label for="thp">Température cave Min:</label>
+  <div>
+  <input id="thp"  type="text" name="mintempCave" value="8">
+  degré à <span id="minHeurCave"></span>
 </div>
 </div>
 </div>
-
 <div class="container1">
   <button id="btLast24">Last 24</button>
   <label>
