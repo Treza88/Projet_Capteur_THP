@@ -1,8 +1,7 @@
 Projet_Capteur_THP
 
 
-_ Actuellement je suis sur la phase de création des données et stockage dans une base de données relationnelle MySQL. Un modèle de la base de données techcnique se trouve dans le doosier "BME_280_BD_1/Doc annexe" comportant la visualisation de la base de données au format jpg, les deux tables en rapport avec les utilisateurs backend n'y figure pas.
-=======
+
 _ Actuellement je suis sur la phase de création des données et stockage dans une base de données relationnelle MySQL.
  Un modèle de la base de données techcnique se trouve dans le doosier "BME_280_BD_1/Doc annexe" comportant la visualisation de la base de données au format jpg, les deux tables en rapport avec les utilisateurs backend n'y figure pas.
 
@@ -12,7 +11,6 @@ _ Projet construit autour d'un Arduino/ESP8266 et trois capteurs de température
 _ Site accessible uniquement en journée à cette adresse:
 
 
-http://projet-thp.trv-synergy.fr/temperature.html
-=======
+
 http://projet-thp.trv-synergy.fr/temperature.html
 
